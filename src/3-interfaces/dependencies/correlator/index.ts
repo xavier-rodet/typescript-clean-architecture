@@ -1,0 +1,1 @@
+export { ICorrelator } from "./ICorrelator";

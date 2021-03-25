@@ -1,0 +1,52 @@
+{
+  "main": "dist/src/app.js",
+  "scripts": {
+    "dev": "env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
+    "test": "nyc mocha -r ts-node/register 'tests/**/*.ts'",
+    "build": "tsoa spec-and-routes && ttsc",
+    "start": "node dist/src/app.js",
+    "db:migrate:make": "knex --knexfile src/4-frameworks/db/config.ts migrate:make -x ts",
+    "db:migrate:latest": "knex --knexfile src/4-frameworks/db/config.ts migrate:latest",
+    "db:migrate:rollback": "knex --knexfile src/4-frameworks/db/config.ts migrate:rollback",
+    "db:seed": "knex --knexfile src/4-frameworks/db/config.ts seed:run",
+    "worker:updateGameReadCount": "node dist/src/updateGameReadCountWorker"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.15",
+    "@types/mocha": "^8.2.0",
+    "@types/node": "^14.14.28",
+    "@types/sanitize-html": "^1.27.1",
+    "@types/swagger-ui-express": "^4.1.2",
+    "@types/uuid": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.15.0",
+    "@zerollup/ts-transform-paths": "^1.7.18",
+    "chai": "^4.3.0",
+    "concurrently": "^5.3.0",
+    "dts-gen": "^0.6.0",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^7.2.0",
+    "mocha": "^8.3.0",
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "ttypescript": "^1.5.12",
+    "typescript": "^4.1.5"
+  },
+  "dependencies": {
+    "@logdna/logger": "^2.2.4",
+    "bottlejs": "^2.0.0",
+    "correlation-id": "^4.0.0",
+    "db-errors": "^0.2.3",
+    "express": "^4.17.1",
+    "knex": "^0.21.17",
+    "kubemq-nodejs": "^2.1.1",
+    "pg": "^8.5.1",
+    "sanitize-html": "^2.3.2",
+    "status-code-enum": "^1.0.0",
+    "swagger-ui-express": "^4.1.6",
+    "tsoa": "^3.5.2",
+    "uuid": "^8.3.2"
+  }
+}

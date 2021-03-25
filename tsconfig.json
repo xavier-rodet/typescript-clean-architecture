@@ -1,0 +1,54 @@
+{
+  "include": ["src", "ts-definitions"],
+  "ts-node": {
+    "files": true
+  },
+  "compilerOptions": {
+    /* Basic Options */
+    "incremental": true,
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "dist",
+    "sourceMap": true,
+
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@entities/*": ["src/1-entities/*"],
+      "@use-cases/*": ["src/2-use-cases/*"],
+      "@interfaces/*": ["src/3-interfaces/*"],
+      "@frameworks/*": ["src/4-frameworks/*"]
+    },
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    /* Advanced Options */
+    "forceConsistentCasingInFileNames": true,
+
+    /* Plugins */
+    "plugins": [
+      { "transform": "@zerollup/ts-transform-paths", "exclude": ["*"] }
+    ]
+  }
+}
