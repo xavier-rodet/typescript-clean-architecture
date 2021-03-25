@@ -9,7 +9,7 @@
     "db:migrate:latest": "knex --knexfile src/4-frameworks/db/config.ts migrate:latest",
     "db:migrate:rollback": "knex --knexfile src/4-frameworks/db/config.ts migrate:rollback",
     "db:seed": "knex --knexfile src/4-frameworks/db/config.ts seed:run",
-    "worker:updateGameReadCount": "node dist/src/updateGameReadCountWorker"
+    "worker:updateGameReadCount": "node dist/src/worker-update-game-readcount"
   },
   "devDependencies": {
     "@types/chai": "^4.2.15",
