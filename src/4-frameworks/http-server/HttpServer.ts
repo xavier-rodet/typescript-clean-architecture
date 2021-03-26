@@ -74,35 +74,35 @@ export class HttpServer implements IHttpServer {
 
   public catchErrors(): this {
     this.express.use(function errorHandler(
-      err: unknown,
+      error: unknown,
       req: ExRequest,
       res: ExResponse,
       next: NextFunction
     ): ExResponse | void {
       // TSOA TS validation
-      if (err instanceof ValidateError) {
-        console.warn(`Caught ValidationError for ${req.path}:`, err.fields);
+      if (error instanceof ValidateError) {
+        console.warn(`Caught ValidationError for ${req.path}:`, error.fields);
         return res.status(StatusCode.ClientErrorUnprocessableEntity).json({
           message: "Validation Failed",
-          details: err?.fields,
+          details: error?.fields,
         });
       }
 
       // Custom Entity Validation
-      if (err instanceof EntityValidationError) {
+      if (error instanceof EntityValidationError) {
         console.warn(`Caught EntityValidationError for ${req.path}:`, {
-          message: err.message,
-          constraints: err.constraints,
+          message: error.message,
+          constraints: error.constraints,
         });
         return res.status(StatusCode.ClientErrorUnprocessableEntity).json({
           message: "Validation Failed",
-          details: { message: err.message, constraints: err.constraints },
+          details: { message: error.message, constraints: error.constraints },
         });
       }
 
       // Other Errors
-      if (err instanceof Error) {
-        console.error("internal error", err);
+      if (error instanceof Error) {
+        console.error("internal error", { error });
         return res.status(StatusCode.ServerErrorInternal).json({
           message: "Internal Server Error",
         });

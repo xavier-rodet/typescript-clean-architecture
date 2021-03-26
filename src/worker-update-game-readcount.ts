@@ -11,4 +11,9 @@ const updateGameReadCountWorker = iocAppContainer[
   UpdateGameReadCountWorker.name
 ] as IWorker;
 
-updateGameReadCountWorker.run();
+try {
+  updateGameReadCountWorker.run();
+} catch (error) {
+  console.error("UpdateGameReadCountWorker error", { error });
+  process.exit(1);
+}

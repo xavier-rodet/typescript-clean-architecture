@@ -19,9 +19,8 @@ try {
   brokerSubscribers.subscribe();
   brokerReceivers.receive();
   appListeners.listen();
-
   api.start();
 } catch (error) {
-  console.error("App error", error);
+  console.error("App error", { error });
   process.exit(1);
 }
