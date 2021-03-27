@@ -8,7 +8,7 @@ const config: Knex.Config = {
     database: process.env.DB_NAME,
     user: process.env.DB_USER,
     password: process.env.DB_PWD,
-    ssl: "production" === process.env.ENV,
+    ssl: { rejectUnauthorized: false },
   },
   pool: {
     min: 2,
