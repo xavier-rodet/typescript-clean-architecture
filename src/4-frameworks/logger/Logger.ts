@@ -9,7 +9,7 @@ export class Logger implements ILogger {
   private correlator: ICorrelator;
 
   constructor(config: IConfig, correlator: ICorrelator) {
-    this.logger = LogDNA.createLogger(config.apiKey, config.options);
+    this.logger = LogDNA.createLogger(config.key, config.options);
     this.correlator = correlator;
   }
 

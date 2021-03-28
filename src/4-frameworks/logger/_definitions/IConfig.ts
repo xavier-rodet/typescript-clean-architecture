@@ -1,7 +1,7 @@
 export interface IConfig {
-  apiKey: string;
+  key: string;
   options: {
-    appName: string;
+    app: string;
     env: string;
   };
 }
