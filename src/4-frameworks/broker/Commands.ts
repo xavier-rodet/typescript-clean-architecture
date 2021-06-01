@@ -8,7 +8,7 @@ import {
   IMessage,
   ICommands,
 } from "@interfaces/dependencies/broker";
-import { ICorrelator } from "@interfaces/dependencies/correlator";
+import { ICorrelator } from "@frameworks/correlator";
 import { IConfig } from "./_definitions/IConfig";
 import { IMessageFactory } from "./_definitions/IMessageFactory";
 

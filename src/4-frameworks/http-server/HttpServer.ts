@@ -8,7 +8,7 @@ import swaggerUi, { JsonObject } from "swagger-ui-express";
 import { ValidateError } from "tsoa";
 import { RegisterRoutes } from "dist/routes";
 import { IHttpServer } from "@interfaces/dependencies/http-server";
-import { ICorrelator } from "@interfaces/dependencies/correlator";
+import { ICorrelator } from "@frameworks/correlator";
 import { EntityValidationError } from "@entities/models/_definitions/EntityValidationError";
 import { StatusCode } from "status-code-enum";
 import { IConfig } from "./_definitions/IConfig";

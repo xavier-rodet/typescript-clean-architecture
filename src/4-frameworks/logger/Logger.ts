@@ -1,7 +1,7 @@
 import { once } from "events";
 import LogDNA from "@logdna/logger";
-import { ILogger } from "@interfaces/dependencies/logger";
-import { ICorrelator } from "@interfaces/dependencies/correlator";
+import { ILogger } from ".";
+import { ICorrelator } from "@frameworks/correlator";
 import { IConfig } from "./_definitions/IConfig";
 
 export class Logger implements ILogger {

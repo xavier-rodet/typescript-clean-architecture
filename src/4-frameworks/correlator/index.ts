@@ -1,3 +1,2 @@
-import { Correlator } from "./Correlator";
-
-export { Correlator };
+export { ICorrelator } from "./_definitions/ICorrelator";
+export { Correlator } from "./Correlator";

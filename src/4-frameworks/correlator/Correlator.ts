@@ -1,6 +1,6 @@
 import correlator from "correlation-id";
 
-import { ICorrelator } from "@interfaces/dependencies/correlator";
+import { ICorrelator } from "@frameworks/correlator";
 
 export class Correlator implements ICorrelator {
   public bindId(work: CallableFunction, id?: string): CallableFunction {
