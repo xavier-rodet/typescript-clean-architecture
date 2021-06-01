@@ -62,6 +62,8 @@ env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) yarn db:migrate:lates
 env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) yarn db:seed
 ```
 
+## How do I run it?
+
 ### Run it for use
 
 ```
@@ -116,15 +118,14 @@ To illustrate a complete microservice broker workflow, we also implemented an ex
   - update the `game.readCount` property through `GamesInteractions`
 - `GetGameReadCountReceiver` is receiving broker command `COMMAND.GAME.GET_READ_COUNT` and send back a random value between 1 and 1000
 
-
 To trigger this workflow, just request api routes to get games, like:
+
 - GET /games
 - GET /games/:uid
 - GET /players/:uid/games
 
-## TODO
+## TODOLIST
 
-We should add:
-
-- Unit tests
+- Write full [PyramidTest](https://martinfowler.com/bliki/TestPyramid.html)
+- switch from [kubemq-node](https://github.com/kubemq-io/kubemq-node) to [kubemq-js](https://github.com/kubemq-io/kubemq-js) library
 - An `@interfaces/adapters/web` which handles is own controllers/views to demonstrate an even better Clean Architecture (unlike our API which is married to TSOA annotations)
