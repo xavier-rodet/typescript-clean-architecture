@@ -57,7 +57,7 @@ export class Queues extends ABrokerService implements IQueues {
       const transaction = this.getQueue(queue).createTransaction();
 
       const transactionEvents = new EventEmitter();
-      transactionEvents.on("ended", async () => {
+      transactionEvents.once("ended", async () => {
         await transaction.closeStream();
         resolve();
       });
