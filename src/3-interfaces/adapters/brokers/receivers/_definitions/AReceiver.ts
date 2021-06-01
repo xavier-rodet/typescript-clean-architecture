@@ -13,7 +13,7 @@ export abstract class AReceiver implements IReceiver {
     this.command = event;
   }
 
-  receive(): void {
+  public receive(): void {
     this.commands.receive(this.command, this.handler);
   }
 

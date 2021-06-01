@@ -10,7 +10,7 @@ export abstract class ASubscriber implements ISubscriber {
     this.event = event;
   }
 
-  subscribe(): void {
+  public subscribe(): void {
     this.events.subscribe(this.event, this.handler);
   }
 
