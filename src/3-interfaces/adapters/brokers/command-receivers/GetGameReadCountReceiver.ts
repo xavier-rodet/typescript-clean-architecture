@@ -1,11 +1,11 @@
-import { AReceiver } from "./_definitions/AReceiver";
+import { ACommandReceiver } from "./_definitions/ACommandReceiver";
 import {
   ICommands,
   IHandlerWithResponse,
   IMessage,
 } from "@interfaces/dependencies/broker";
 
-export class GetGameReadCountReceiver extends AReceiver {
+export class GetGameReadCountReceiver extends ACommandReceiver {
   constructor(commands: ICommands) {
     super(commands, "COMMAND.GAME.GET_READ_COUNT");
   }

@@ -1,7 +1,7 @@
 import { IQueues, IHandler } from "@interfaces/dependencies/broker";
-import { IWorker } from "./IWorker";
+import { IQueueWorker } from "./IQueueWorker";
 
-export abstract class AWorker implements IWorker {
+export abstract class AQueueWorker implements IQueueWorker {
   protected queues: IQueues;
   protected queue: string;
   private maxHandlerProcessTimeSeconds: number;

@@ -5,9 +5,9 @@ import {
   IMessage,
   IQueues,
 } from "@interfaces/dependencies/broker";
-import { ASubscriber } from "./_definitions/ASubscriber";
+import { AEventSubscriber } from "./_definitions/AEventSubscriber";
 
-export class GameReadSubscriber extends ASubscriber {
+export class GameReadSubscriber extends AEventSubscriber {
   private queues: IQueues;
 
   constructor(events: IEvents, queues: IQueues) {

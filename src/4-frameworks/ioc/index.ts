@@ -30,19 +30,19 @@ import { PlayersController } from "@frameworks/api/controllers/PlayersController
 import { LibraryInteractions } from "@use-cases/interactions/library";
 import { PlayersInteractions } from "@use-cases/interactions/players";
 import { ReviewsInteractions } from "@use-cases/interactions/reviews";
-import { UpdateGameReadCountWorker } from "@interfaces/adapters/brokers/workers/UpdateGameReadCountWorker";
+import { UpdateGameReadCountWorker } from "@interfaces/adapters/brokers/queue-workers/UpdateGameReadCountWorker";
 
 import { TsoaContainer } from "./_definitions/TsoaContainer";
 import { MessageFactory } from "@frameworks/broker/_definitions/MessageFactory";
 import { Listeners, GameListener } from "@interfaces/adapters/listeners";
 import {
-  Receivers,
+  CommandReceivers,
   GetGameReadCountReceiver,
-} from "@interfaces/adapters/brokers/receivers";
+} from "@interfaces/adapters/brokers/command-receivers";
 import {
-  Subscribers,
+  EventSubscribers,
   GameReadSubscriber,
-} from "@interfaces/adapters/brokers/subscribers";
+} from "@interfaces/adapters/brokers/event-subscribers";
 
 /***** NOTE: to detect mispelling at compilation time (and not runtime like currently) when we setup our IoC *****/
 //// If we need have class name conflicts, we should first define them from here
@@ -179,30 +179,30 @@ ioc.service(
 /******************** @use-cases ********************/
 
 /******************** @interfaces ********************/
-// Broker Receivers
+// Broker CommandReceivers
 ioc.service(
   GetGameReadCountReceiver.name,
   GetGameReadCountReceiver,
   Commands.name
 );
-ioc.factory(Receivers.name, (container) => {
+ioc.factory(CommandReceivers.name, (container) => {
   const receivers = [container[GetGameReadCountReceiver.name]];
-  return new Receivers(receivers);
+  return new CommandReceivers(receivers);
 });
 
-// Broker Subscribers
+// Broker EventSubscribers
 ioc.service(
   GameReadSubscriber.name,
   GameReadSubscriber,
   Events.name,
   Queues.name
 );
-ioc.factory(Subscribers.name, (container) => {
+ioc.factory(EventSubscribers.name, (container) => {
   const subscribers = [container[GameReadSubscriber.name]];
-  return new Subscribers(subscribers);
+  return new EventSubscribers(subscribers);
 });
 
-// Broker Workers
+// Broker QueueWorkers
 ioc.service(
   UpdateGameReadCountWorker.name,
   UpdateGameReadCountWorker,

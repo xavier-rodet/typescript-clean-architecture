@@ -2,22 +2,22 @@ import { init } from "./_init";
 init();
 
 import { iocAppContainer } from "@frameworks/ioc";
-import { IReceiver, Receivers } from "@interfaces/adapters/brokers/receivers";
+import { ICommandReceiver, CommandReceivers } from "@interfaces/adapters/brokers/command-receivers";
 import { IListener, Listeners } from "@interfaces/adapters/listeners";
 import { Api, IApi } from "@interfaces/adapters/api";
 import {
-  ISubscriber,
-  Subscribers,
-} from "@interfaces/adapters/brokers/subscribers";
+  IEventSubscriber,
+  EventSubscribers,
+} from "@interfaces/adapters/brokers/event-subscribers";
 
-const brokerSubscribers = iocAppContainer[Subscribers.name] as ISubscriber;
-const brokerReceivers = iocAppContainer[Receivers.name] as IReceiver;
+const brokerEventSubscribers = iocAppContainer[EventSubscribers.name] as IEventSubscriber;
+const brokerCommandReceivers = iocAppContainer[CommandReceivers.name] as ICommandReceiver;
 const appListeners = iocAppContainer[Listeners.name] as IListener;
 const api = iocAppContainer[Api.name] as IApi;
 
 try {
-  brokerSubscribers.subscribe();
-  brokerReceivers.receive();
+  brokerEventSubscribers.subscribe();
+  brokerCommandReceivers.receive();
   appListeners.listen();
   api.start();
 } catch (error) {

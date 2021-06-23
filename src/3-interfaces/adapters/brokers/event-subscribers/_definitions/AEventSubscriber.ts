@@ -1,7 +1,7 @@
 import { IEvents, IHandler } from "@interfaces/dependencies/broker";
-import { ISubscriber } from "./ISubscriber";
+import { IEventSubscriber } from "./IEventSubscriber";
 
-export abstract class ASubscriber implements ISubscriber {
+export abstract class AEventSubscriber implements IEventSubscriber {
   protected events: IEvents;
   protected event: string;
 

@@ -3,13 +3,13 @@ init();
 
 import { iocAppContainer } from "@frameworks/ioc";
 import {
-  IWorker,
+  IQueueWorker,
   UpdateGameReadCountWorker,
-} from "@interfaces/adapters/brokers/workers";
+} from "@interfaces/adapters/brokers/queue-workers";
 
 const updateGameReadCountWorker = iocAppContainer[
   UpdateGameReadCountWorker.name
-] as IWorker;
+] as IQueueWorker;
 
 try {
   updateGameReadCountWorker.run();

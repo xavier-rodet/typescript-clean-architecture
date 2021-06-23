@@ -2,9 +2,9 @@ import {
   ICommands,
   IHandlerWithResponse,
 } from "@interfaces/dependencies/broker";
-import { IReceiver } from "./IReceiver";
+import { ICommandReceiver } from "./ICommandReceiver";
 
-export abstract class AReceiver implements IReceiver {
+export abstract class ACommandReceiver implements ICommandReceiver {
   protected commands: ICommands;
   protected command: string;
 

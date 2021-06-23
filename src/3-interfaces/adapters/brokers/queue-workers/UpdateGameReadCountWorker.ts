@@ -5,10 +5,10 @@ import {
   IMessage,
 } from "@interfaces/dependencies/broker";
 
-import { AWorker } from "./_definitions/AWorker";
+import { AQueueWorker } from "./_definitions/AQueueWorker";
 import { IGamesInteractions } from "@use-cases/interactions/games";
 
-export class UpdateGameReadCountWorker extends AWorker {
+export class UpdateGameReadCountWorker extends AQueueWorker {
   private gamesInteractions: IGamesInteractions;
   private commands: ICommands;
 
