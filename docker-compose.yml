@@ -54,7 +54,7 @@ services:
       - 50000:50000
     environment:
       KUBEMQ_HOST: kubemq
-      KUBEMQ_TOKEN: 2cfe22e5-3dd0-41dc-947a-e0c937a3b9c2
+      KUBEMQ_TOKEN: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     volumes:
       - broker-persistence:/store
 
