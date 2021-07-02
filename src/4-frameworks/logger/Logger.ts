@@ -16,6 +16,7 @@ export class Logger implements ILogger {
   public init(): void {
     this.overrideConsole();
     this.logger.on("error", console.error);
+    process.on("uncaughtException", console.error);
     process.on("unhandledRejection", console.error);
     this.handleShutdown();
   }
