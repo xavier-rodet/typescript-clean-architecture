@@ -8,14 +8,24 @@ import { IGamesRepository } from "@use-cases/dependencies/repositories/IGamesRep
 
 export class GamesRepository implements IGamesRepository {
   private db: Knex;
-  private readonly table = "games";
+  private readonly TABLE = "games";
+  private readonly FIELDS = [
+    "id",
+    "game",
+    "platform",
+    "createdAt",
+    "updatedAt",
+  ];
 
   constructor(db: Knex) {
     this.db = db;
   }
 
   public findGames(page: number, platform: EGamePlatform): Promise<IGame[]> {
-    const query = this.db<TGameTable>(this.table)
+    const query = this.db<TGameTable>(this.TABLE)
+      .column(this.FIELDS)
+      .select()
+      .from(this.TABLE)
       .offset(options.ITEM_PER_PAGE * (page - 1))
       .limit(options.ITEM_PER_PAGE)
       .orderBy("id");
@@ -29,7 +39,10 @@ export class GamesRepository implements IGamesRepository {
   }
 
   public findGame(gameId: string): Promise<IGame | undefined> {
-    return this.db<TGameTable>(this.table)
+    return this.db<TGameTable>(this.TABLE)
+      .column(this.FIELDS)
+      .select()
+      .from(this.TABLE)
       .where("id", gameId)
       .first()
       .then((row) => (row ? this.convertGameTableToGame(row) : undefined));
@@ -38,19 +51,19 @@ export class GamesRepository implements IGamesRepository {
   public insertGame(game: IGame): Promise<IGame> {
     const insertData = this.convertGameToGameTable(game);
 
-    return this.db(this.table)
+    return this.db(this.TABLE)
       .insert(insertData)
-      .returning<TGameTable[]>("*")
+      .returning<TGameTable[]>(this.FIELDS)
       .then((rows: TGameTable[]) => this.convertGameTableToGame(rows[0]));
   }
 
   public updateGame(game: IGame): Promise<IGame | undefined> {
     const gameTable = this.convertGameToGameTable(game);
 
-    return this.db(this.table)
+    return this.db(this.TABLE)
       .where("id", game.id)
       .update(gameTable)
-      .returning<TGameTable[]>("*")
+      .returning<TGameTable[]>(this.FIELDS)
       .then((rows: TGameTable[]) => {
         return rows.length > 0
           ? this.convertGameTableToGame(rows[0])
@@ -59,14 +72,17 @@ export class GamesRepository implements IGamesRepository {
   }
 
   public deleteGame(gameId: string): Promise<void> {
-    return this.db<TGameTable>(this.table).where("id", gameId).delete();
+    return this.db<TGameTable>(this.TABLE).where("id", gameId).delete();
   }
 
   public findGamesFromPlayerLibrary(
     playerId: string,
     page = 1
   ): Promise<IGame[]> {
-    return this.db<TGameTable>(this.table)
+    return this.db<TGameTable>(this.TABLE)
+      .column(this.FIELDS)
+      .select()
+      .from(this.TABLE)
       .innerJoin("library", "games.id", "library.gameId")
       .where("library.ownerId", playerId)
       .offset(options.ITEM_PER_PAGE * (page - 1))

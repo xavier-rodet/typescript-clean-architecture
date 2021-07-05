@@ -4,12 +4,18 @@ import Knex from "knex";
 
 export class LibraryRepository implements ILibraryRepository {
   private db: Knex;
-  private readonly table = "library";
+  private readonly TABLE = "library";
+  private readonly FIELDS = ["gameId", "ownerId"];
+
   constructor(db: Knex) {
     this.db = db;
   }
 
   public insertLibrary(library: ILibrary): Promise<void> {
-    return this.db<ILibrary>(this.table).insert(library);
+    return this.db<ILibrary>(this.TABLE)
+      .column(this.FIELDS)
+      .select()
+      .from(this.TABLE)
+      .insert(library);
   }
 }
