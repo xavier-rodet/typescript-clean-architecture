@@ -93,7 +93,7 @@ export class Queues extends ABrokerService implements IQueues {
     return new KubeMQ.MessageQueue(
       `${this.config.host}:${this.config.port}`,
       queue,
-      this.config.client
+      `${this.config.client}-${queue.replace(/\./g, "_")}`
     );
   }
 

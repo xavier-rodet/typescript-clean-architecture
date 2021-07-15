@@ -58,7 +58,7 @@ export class Commands extends ABrokerService implements ICommands {
     const receiver = new KubeMQ.QueryReceiver(
       this.config.host,
       this.config.port,
-      this.config.client,
+      `${this.config.client}-${command.replace(/\./g, "_")}`,
       command,
       this.config.group,
       timeout

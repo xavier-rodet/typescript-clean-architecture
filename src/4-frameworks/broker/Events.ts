@@ -27,7 +27,7 @@ export class Events extends ABrokerService implements IEvents {
     const events = new KubeMQ.StoreSubscriber(
       this.config.host,
       this.config.port,
-      this.config.client,
+      `${this.config.client}-${event.replace(/\./g, "_")}`,
       event,
       this.config.group
     );
