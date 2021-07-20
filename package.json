@@ -1,7 +1,7 @@
 {
   "main": "dist/src/app.js",
   "scripts": {
-    "dev": "env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
+    "dev": "env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) concurrently \"nodemon\" \"nodemon --inspect=0.0.0.0 -x tsoa spec-and-routes\"",
     "test": "nyc mocha -r ts-node/register 'tests/**/*.ts'",
     "build": "tsoa spec-and-routes && ttsc",
     "start": "node dist/src/app.js",
@@ -9,6 +9,7 @@
     "db:migrate:latest": "knex --knexfile src/4-frameworks/db/config.ts migrate:latest",
     "db:migrate:rollback": "knex --knexfile src/4-frameworks/db/config.ts migrate:rollback",
     "db:seed": "knex --knexfile src/4-frameworks/db/config.ts seed:run",
+    "dev:worker:updateGameReadCount": "env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) node --inspect=0.0.0.0 dist/src/worker-update-game-readcount",
     "worker:updateGameReadCount": "node dist/src/worker-update-game-readcount"
   },
   "devDependencies": {

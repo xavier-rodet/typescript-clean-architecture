@@ -21,6 +21,7 @@ services:
       - 3000:3000
     volumes:
       - .:/app
+      - /app/node_modules
     depends_on:
       - postgresql
       - kubemq
@@ -75,6 +76,7 @@ services:
       BROKER_HOST: kubemq
     volumes:
       - .:/app
+      - /app/node_modules
     depends_on:
       - game-store
 
