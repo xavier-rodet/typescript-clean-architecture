@@ -58,13 +58,9 @@ export class PlayersController extends Controller {
   ): Promise<IPlayer | void> {
     const player = await this.playersInteractions.getPlayer(playerId);
 
-    if (player) {
-      return player;
-    } else {
-      notFoundResponse(StatusCode.ClientErrorNotFound, {
-        message: "Player not found",
-      });
-    }
+    return player ?? notFoundResponse(StatusCode.ClientErrorNotFound, {
+      message: "Player not found",
+    });
   }
 
   @Get()
@@ -89,7 +85,7 @@ export class PlayersController extends Controller {
     } catch (error) {
       const wrappedError = wrapError(error);
       if (wrappedError instanceof UniqueViolationError) {
-        duplicatedResponse(StatusCode.ClientErrorConflict, {
+        return duplicatedResponse(StatusCode.ClientErrorConflict, {
           message: "Player already exist",
         });
       } else throw wrappedError;
@@ -112,13 +108,10 @@ export class PlayersController extends Controller {
       playerId,
       playerModificationData
     );
-    if (player) {
-      return player;
-    } else {
-      notFoundResponse(StatusCode.ClientErrorNotFound, {
-        message: "Player not found",
-      });
-    }
+
+    return player ?? notFoundResponse(StatusCode.ClientErrorNotFound, {
+      message: "Player not found",
+    });
   }
 
   @Delete("{playerId}")

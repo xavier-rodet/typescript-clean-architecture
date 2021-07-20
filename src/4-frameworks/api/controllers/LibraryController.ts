@@ -69,11 +69,11 @@ export class LibraryController extends Controller {
             entityName = "Unknown entity";
         }
 
-        notFoundResponse(StatusCode.ClientErrorNotFound, {
+        return notFoundResponse(StatusCode.ClientErrorNotFound, {
           message: `${entityName} does not exist`,
         });
       } else if (wrappedError instanceof UniqueViolationError) {
-        duplicatedResponse(StatusCode.ClientErrorConflict, {
+        return duplicatedResponse(StatusCode.ClientErrorConflict, {
           message: "This game is already in this player library",
         });
       } else throw wrappedError;

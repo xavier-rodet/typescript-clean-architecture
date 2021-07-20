@@ -62,13 +62,9 @@ export class GamesController extends Controller {
   ): Promise<IGame | void> {
     const game = await this.gamesInteractions.getGame(gameId);
 
-    if (game) {
-      return game;
-    } else {
-      notFoundResponse(StatusCode.ClientErrorNotFound, {
-        message: "Game not found",
-      });
-    }
+    return game ?? notFoundResponse(StatusCode.ClientErrorNotFound, {
+      message: "Game not found",
+    });
   }
 
   @Get()
@@ -96,7 +92,7 @@ export class GamesController extends Controller {
     } catch (error) {
       const wrappedError = wrapError(error);
       if (wrappedError instanceof UniqueViolationError) {
-        duplicatedResponse(StatusCode.ClientErrorConflict, {
+        return duplicatedResponse(StatusCode.ClientErrorConflict, {
           message: "Game already exist",
         });
       } else throw wrappedError;
@@ -119,13 +115,10 @@ export class GamesController extends Controller {
       gameId,
       gameModificationsParams
     );
-    if (game) {
-      return game;
-    } else {
-      notFoundResponse(StatusCode.ClientErrorNotFound, {
-        message: "Game not found",
-      });
-    }
+
+    return game ?? notFoundResponse(StatusCode.ClientErrorNotFound, {
+      message: "Game not found",
+    });
   }
 
   @Delete("{gameId}")
@@ -185,11 +178,11 @@ export class GamesController extends Controller {
             entityName = "unknown entity";
         }
 
-        notFoundResponse(StatusCode.ClientErrorNotFound, {
+        return notFoundResponse(StatusCode.ClientErrorNotFound, {
           message: `${entityName} does not exist`,
         });
       } else if (wrappedError instanceof UniqueViolationError) {
-        duplicatedResponse(StatusCode.ClientErrorConflict, {
+        return duplicatedResponse(StatusCode.ClientErrorConflict, {
           message: "Game has already been reviewed by this player",
         });
       } else throw wrappedError;
