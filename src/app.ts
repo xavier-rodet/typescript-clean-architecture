@@ -15,12 +15,7 @@ const brokerCommandReceivers = iocAppContainer[CommandReceivers.name] as IComman
 const appListeners = iocAppContainer[Listeners.name] as IListener;
 const api = iocAppContainer[Api.name] as IApi;
 
-try {
-  brokerEventSubscribers.subscribe();
-  brokerCommandReceivers.receive();
-  appListeners.listen();
-  api.start();
-} catch (error) {
-  console.error("App error", { error });
-  process.exit(1);
-}
+brokerEventSubscribers.subscribe();
+brokerCommandReceivers.receive();
+appListeners.listen();
+api.start();
