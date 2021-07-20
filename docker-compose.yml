@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   game-store:
-    image: node:14.16-alpine
+    image: node:14.17-alpine
     entrypoint: ["/bin/sh", "-c"]
     command:
       - |
@@ -59,7 +59,7 @@ services:
       - broker-persistence:/store
 
   update-game-read-count-worker:
-    image: node:14.16-alpine
+    image: node:14.17-alpine
     entrypoint: ["/bin/sh", "-c"]
     command:
       - |

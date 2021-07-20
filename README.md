@@ -34,7 +34,7 @@ CRUD actions naming convention:
 
 ### Tools dependencies
 
-- [NodeJS 14.16](https://nodejs.org/en/download/)
+- [NodeJS 14.17](https://nodejs.org/en/download/)
 - [Yarn](https://yarnpkg.com/getting-started/install)
 - [Docker](https://www.docker.com/products/docker-desktop) & [Docker Compose](https://docs.docker.com/compose/install/)
 
