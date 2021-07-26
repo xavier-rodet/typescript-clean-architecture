@@ -58,8 +58,8 @@ Initialize database:
 
 ```
 docker-compose up postgresql
-env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) yarn db:migrate:latest
-env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) yarn db:seed
+env $(cat .env.dev .env.dev.local | grep -v "#" | xargs) yarn db:migrate:latest
+env $(cat .env.dev .env.dev.local | grep -v "#" | xargs) yarn db:seed
 ```
 
 ## How do I run it?
@@ -87,7 +87,7 @@ yarn dev
 Run worker (without auto-reloading):
 
 ```
-yarn build && env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) yarn worker:updateGameReadCount
+yarn build && env $(cat .env.dev .env.dev.local | grep -v "#" | xargs) yarn worker:updateGameReadCount
 ```
 
 ## Tests
