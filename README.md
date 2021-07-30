@@ -126,6 +126,7 @@ To trigger this workflow, just request api routes to get games, like:
 
 ## TODOLIST
 
+- Make debugging working correctly (breakpoint should lead us to .ts instead of .js) : https://www.npmjs.com/package/source-map-support ?
 - Write full [PyramidTest](https://martinfowler.com/bliki/TestPyramid.html)
 - switch from [kubemq-node](https://github.com/kubemq-io/kubemq-node) to [kubemq-js](https://github.com/kubemq-io/kubemq-js) library
 - An `@interfaces/adapters/web` which handles is own controllers/views to demonstrate an even better Clean Architecture (unlike our API which is married to TSOA annotations)
