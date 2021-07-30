@@ -9,8 +9,8 @@
     "db:migrate:latest": "knex --knexfile src/4-frameworks/db/config.ts migrate:latest",
     "db:migrate:rollback": "knex --knexfile src/4-frameworks/db/config.ts migrate:rollback",
     "db:seed": "knex --knexfile src/4-frameworks/db/config.ts seed:run",
-    "dev:worker:updateGameReadCount": "env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) node --inspect=0.0.0.0 dist/src/worker-update-game-readcount",
-    "worker:updateGameReadCount": "node dist/src/worker-update-game-readcount"
+    "dev:worker:updateGameReadCount": "yarn build && env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) node --inspect=0.0.0.0 dist/src/worker-update-game-readcount.js",
+    "worker:updateGameReadCount": "node dist/src/worker-update-game-readcount.js"
   },
   "devDependencies": {
     "@types/chai": "^4.2.15",
