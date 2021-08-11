@@ -68,6 +68,9 @@ export class HttpServer implements IHttpServer {
         );
       });
     }
+    
+    // Host swagger.json
+    this.express.use("/swagger.json", express.static(definitionsPath));
 
     return this;
   }
@@ -132,6 +135,9 @@ export class HttpServer implements IHttpServer {
       );
       console.info(
         `-> API Documentation is now available on http://localhost:${this.config.port}/docs/#/`
+      );
+      console.info(
+        `-> API Specification definitions is now available on http://localhost:${this.config.port}/swagger.json`
       );
     });
   }
