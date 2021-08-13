@@ -1,4 +1,6 @@
 {
+  "name": "TS Clean Architecture",
+  "version": "1.0.0",
   "main": "dist/src/app.js",
   "scripts": {
     "dev": "env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) concurrently \"nodemon\" \"nodemon --inspect=0.0.0.0 -x tsoa spec-and-routes\"",
