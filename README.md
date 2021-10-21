@@ -15,7 +15,7 @@ Game Store is an example of a TypeScript microservice that tries to respect the 
 - `@interfaces`: application interfaces (API, web GUI, broker workers/subscribers/receivers, etc...)
   - `/dependencies/`: abstractions of interfaces dependencies
   - `/adapters/`: adapters that converts data between `@use-cases`/`@entities` convenience and `@frameworks` convenience
-- `@frameworks`: external dependencies adapters that implements abstractions from `@entities/@use-cases/@adapters dependencies`
+- `@frameworks`: external dependencies adapters that implements abstractions from `@entities/@use-cases/@interfaces dependencies`
 
 **Dependency (inversion) workflow:** `@frameworks -> @interfaces -> @use-cases -> @entities`
 
@@ -129,4 +129,4 @@ To trigger this workflow, just request api routes to get games, like:
 - Make debugging working correctly (breakpoint should lead us to .ts instead of .js) : https://www.npmjs.com/package/source-map-support ? (or not, it seems OK)
 - Write full [PyramidTest](https://martinfowler.com/bliki/TestPyramid.html)
 - switch from [kubemq-node](https://github.com/kubemq-io/kubemq-node) to [kubemq-js](https://github.com/kubemq-io/kubemq-js) library
-- An `@interfaces/adapters/web` which handles is own controllers/views to demonstrate an even better Clean Architecture (unlike our API which is married to TSOA annotations)
+- Add an `@interfaces/adapters/web` which handles is own controllers/views to demonstrate an even better Clean Architecture (unlike our API which is married to TSOA annotations)
