@@ -9,6 +9,7 @@ export class Api implements IApi {
     this.httpServer = httpServer
       .useBodyParser()
       .useCorrelation()
+      .useCors(config.corsAllowOrigin)
       .registerApiRoutes()
       .registerApiDocs(config.definitionsPath)
       .catchErrors()

@@ -12,6 +12,7 @@ import { ICorrelator } from "@frameworks/correlator";
 import { EntityValidationError } from "@entities/models/_definitions/EntityValidationError";
 import { StatusCode } from "status-code-enum";
 import { IConfig } from "./_definitions/IConfig";
+import cors from "cors";
 
 export class HttpServer implements IHttpServer {
   private config: IConfig;
@@ -35,6 +36,15 @@ export class HttpServer implements IHttpServer {
     this.express.use((req, _res, next) => {
       this.correlator.withId(next, req.get(correlationHeaderName));
     });
+    return this;
+  }
+
+  public useCors(origin: string): this {
+    const corsMidlleWare = cors({ origin });
+
+    this.express.options("*", corsMidlleWare);
+    this.express.use(corsMidlleWare);
+
     return this;
   }
 
@@ -68,7 +78,7 @@ export class HttpServer implements IHttpServer {
         );
       });
     }
-    
+
     // Host swagger.json
     this.express.use("/swagger.json", express.static(definitionsPath));
 

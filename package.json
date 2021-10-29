@@ -1,5 +1,5 @@
 {
-  "name": "TS Clean Architecture",
+  "name": "ts-clean-architecture",
   "version": "1.0.0",
   "main": "dist/src/app.js",
   "scripts": {
@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.2.15",
+    "@types/cors": "^2.8.12",
     "@types/mocha": "^8.2.0",
     "@types/node": "^14.14.28",
     "@types/sanitize-html": "^1.27.1",
@@ -41,6 +42,7 @@
     "@logdna/logger": "^2.2.4",
     "bottlejs": "^2.0.0",
     "correlation-id": "^4.0.0",
+    "cors": "^2.8.5",
     "db-errors": "^0.2.3",
     "express": "^4.17.1",
     "knex": "^0.21.17",
