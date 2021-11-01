@@ -51,7 +51,7 @@ export class LibraryController extends Controller {
     this.setStatus(StatusCode.SuccessCreated);
 
     try {
-      return this.libraryInteractions.addLibrary(library);
+      return await this.libraryInteractions.addLibrary(library);
     } catch (error) {
       const wrappedError = wrapError(error);
       if (wrappedError instanceof ForeignKeyViolationError) {

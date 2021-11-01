@@ -11,11 +11,14 @@ export class LibraryRepository implements ILibraryRepository {
     this.db = db;
   }
 
-  public insertLibrary(library: ILibrary): Promise<void> {
-    return this.db<ILibrary>(this.TABLE)
+  public async insertLibrary(library: ILibrary): Promise<void> {
+    this.db<ILibrary>(this.TABLE)
       .column(this.FIELDS)
       .select()
       .from(this.TABLE)
-      .insert(library);
+      .insert(library)
+      .then(() => {
+        return;
+      });
   }
 }
