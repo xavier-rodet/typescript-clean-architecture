@@ -1,5 +1,5 @@
 import Knex from "knex";
-import { camelCase } from "lodash";
+import { camelCase, snakeCase } from "lodash";
 
 const config: Knex.Config = {
   client: "postgresql",
@@ -24,6 +24,8 @@ const config: Knex.Config = {
 
   /***** IMPORTANT: this will auto convert snake case fields (from db) into camel case (to js) because PostgreSQL is case insensitive */
   // see: https://knexjs.org/#Installation-post-process-response
+
+  // Conversion for results (so we get camelCase fields as result)
   postProcessResponse: (result /* , queryContext */) => {
     if (Array.isArray(result)) {
       return result.map((row) => camelCaseFieldsName(row));
@@ -31,6 +33,10 @@ const config: Knex.Config = {
       return camelCaseFieldsName(result);
     }
   },
+
+  // Conversion for queries (so we can send camelCase fields as query)
+  wrapIdentifier: (value, origImpl /* , queryContext */) =>
+    origImpl(snakeCase(value)),
   /**********/
 };
 
@@ -45,10 +51,12 @@ export default config;
 
 /*****  Private methods *****/
 function camelCaseFieldsName(row: any): any {
-  Object.entries(row).forEach(([key, value]) => {
-    delete row[key];
-    row[camelCase(key)] = value;
-  });
+  if (row) {
+    Object.entries(row).forEach(([key, value]) => {
+      delete row[key];
+      row[camelCase(key)] = value;
+    });
+  }
 
   return row;
 }
