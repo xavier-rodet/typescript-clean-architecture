@@ -18,5 +18,6 @@
       "@interfaces/*": ["src/3-interfaces/*"],
       "@frameworks/*": ["src/4-frameworks/*"]
     }
-  }
+  },
+  "ignore": ["**/node_modules/@types/**"]
 }
