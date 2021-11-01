@@ -13,8 +13,8 @@ export class GamesRepository implements IGamesRepository {
     "id",
     "game",
     "platform",
-    "createdAt",
-    "updatedAt",
+    "created_at",
+    "updated_at",
   ];
 
   constructor(db: Knex) {
@@ -83,11 +83,11 @@ export class GamesRepository implements IGamesRepository {
       .column(this.FIELDS)
       .select()
       .from(this.TABLE)
-      .innerJoin("library", "games.id", "library.gameId")
-      .where("library.ownerId", playerId)
+      .innerJoin("library", "games.id", "library.game_id")
+      .where("library.owner_id", playerId)
       .offset(options.ITEM_PER_PAGE * (page - 1))
       .limit(options.ITEM_PER_PAGE)
-      .orderBy("games.createdAt")
+      .orderBy("games.created_at")
       .then((rows) => rows.map((row) => this.convertGameTableToGame(row)));
   }
 
@@ -96,8 +96,8 @@ export class GamesRepository implements IGamesRepository {
       id: gameTable.id,
       ...gameTable.game,
       platform: gameTable.platform,
-      createdAt: gameTable.createdAt,
-      updatedAt: gameTable.updatedAt,
+      createdAt: gameTable.created_at,
+      updatedAt: gameTable.updated_at,
     };
 
     return game;
@@ -114,8 +114,8 @@ export class GamesRepository implements IGamesRepository {
         readCount: game.readCount,
       },
       platform: game.platform,
-      createdAt: game.createdAt,
-      updatedAt: game.updatedAt,
+      created_at: game.createdAt,
+      updated_at: game.updatedAt,
     };
 
     return gameTable;

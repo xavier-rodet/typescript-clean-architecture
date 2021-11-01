@@ -5,7 +5,7 @@ import Knex from "knex";
 export class LibraryRepository implements ILibraryRepository {
   private db: Knex;
   private readonly TABLE = "library";
-  private readonly FIELDS = ["gameId", "ownerId"];
+  private readonly FIELDS = ["game_id", "owner_id"];
 
   constructor(db: Knex) {
     this.db = db;

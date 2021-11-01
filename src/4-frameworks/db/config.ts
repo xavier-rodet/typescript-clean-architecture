@@ -1,4 +1,5 @@
 import Knex from "knex";
+import { camelCase } from "lodash";
 
 const config: Knex.Config = {
   client: "postgresql",
@@ -20,6 +21,17 @@ const config: Knex.Config = {
     // directory is relative to "knexfile" path set into package.json
     directory: "../db/migrations",
   },
+
+  /***** IMPORTANT: this will auto convert snake case fields (from db) into camel case (to js) because PostgreSQL is case insensitive */
+  // see: https://knexjs.org/#Installation-post-process-response
+  postProcessResponse: (result /* , queryContext */) => {
+    if (Array.isArray(result)) {
+      return result.map((row) => camelCaseFieldsName(row));
+    } else {
+      return camelCaseFieldsName(result);
+    }
+  },
+  /**********/
 };
 
 const options = {
@@ -30,3 +42,13 @@ export { config, options };
 
 // mandatory for knex migration cmds to work
 export default config;
+
+/*****  Private methods *****/
+function camelCaseFieldsName(row: any): any {
+  Object.entries(row).forEach(([key, value]) => {
+    delete row[key];
+    row[camelCase(key)] = value;
+  });
+
+  return row;
+}

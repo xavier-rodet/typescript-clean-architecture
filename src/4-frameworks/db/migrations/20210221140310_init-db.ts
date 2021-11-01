@@ -9,8 +9,8 @@ export async function up(knex: Knex): Promise<void> {
         .enum("platform", ["pc", "playstation", "xbox"])
         .defaultTo("pc")
         .notNullable();
-      table.dateTime("createdAt").notNullable();
-      table.dateTime("updatedAt").notNullable();
+      table.dateTime("created_at").notNullable();
+      table.dateTime("updated_at").notNullable();
     });
     console.log("table 'games' created");
 
@@ -23,38 +23,38 @@ export async function up(knex: Knex): Promise<void> {
     console.log("table 'players' created");
 
     await knex.schema.createTable("library", (table) => {
-      table.uuid("gameId").notNullable();
-      table.uuid("ownerId").notNullable();
+      table.uuid("game_id").notNullable();
+      table.uuid("owner_id").notNullable();
 
-      table.foreign("gameId").references("games.id");
-      table.foreign("ownerId").references("players.id");
+      table.foreign("game_id").references("games.id");
+      table.foreign("owner_id").references("players.id");
 
-      table.primary(["gameId", "ownerId"]);
+      table.primary(["game_id", "owner_id"]);
     });
     console.log("table 'library' created");
 
     await knex.schema.createTable("reviews", (table) => {
       table.uuid("id").primary();
-      table.uuid("gameId").notNullable();
-      table.uuid("reviewerId").notNullable();
+      table.uuid("game_id").notNullable();
+      table.uuid("reviewer_id").notNullable();
       table.text("message").nullable();
       table.float("rating").unsigned().notNullable();
 
-      table.foreign("gameId").references("games.id");
-      table.foreign("reviewerId").references("players.id");
+      table.foreign("game_id").references("games.id");
+      table.foreign("reviewer_id").references("players.id");
 
-      table.unique(["gameId", "reviewerId"]);
+      table.unique(["game_id", "reviewer_id"]);
     });
     console.log("table 'reviews' created");
 
     await knex.schema.createTable("friendship", (table) => {
-      table.uuid("playerFirstId").index();
-      table.uuid("playerSecondId").index();
+      table.uuid("player_first_id").index();
+      table.uuid("player_second_id").index();
 
-      table.foreign("playerFirstId").references("players.id");
-      table.foreign("playerSecondId").references("players.id");
+      table.foreign("player_first_id").references("players.id");
+      table.foreign("player_second_id").references("players.id");
 
-      table.unique(["playerFirstId", "playerSecondId"]);
+      table.unique(["player_first_id", "player_second_id"]);
     });
 
     console.log("table 'friendship' created");

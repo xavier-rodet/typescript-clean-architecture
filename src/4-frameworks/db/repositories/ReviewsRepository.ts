@@ -6,7 +6,13 @@ import { options } from "../config";
 export class ReviewsRepository implements IReviewsRepository {
   private db: Knex;
   private readonly TABLE = "reviews";
-  private readonly FIELDS = ["id", "gameId", "reviewerId", "message", "rating"];
+  private readonly FIELDS = [
+    "id",
+    "game_id",
+    "reviewer_id",
+    "message",
+    "rating",
+  ];
 
   constructor(db: Knex) {
     this.db = db;
@@ -25,7 +31,7 @@ export class ReviewsRepository implements IReviewsRepository {
       .column(this.FIELDS)
       .select()
       .from(this.TABLE)
-      .where("gameId", gameId)
+      .where("game_id", gameId)
       .offset(options.ITEM_PER_PAGE * (page - 1))
       .limit(options.ITEM_PER_PAGE);
   }

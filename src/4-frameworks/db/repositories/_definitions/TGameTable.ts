@@ -9,6 +9,6 @@ export type TGameTable = {
   id: string;
   game: TGameJsonb;
   platform: EGamePlatform;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 };
