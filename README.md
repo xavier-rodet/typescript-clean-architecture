@@ -130,3 +130,4 @@ To trigger this workflow, just request api routes to get games, like:
 - Write full [PyramidTest](https://martinfowler.com/bliki/TestPyramid.html)
 - switch from [kubemq-node](https://github.com/kubemq-io/kubemq-node) to [kubemq-js](https://github.com/kubemq-io/kubemq-js) library
 - Add an `@interfaces/adapters/web` which handles is own controllers/views to demonstrate an even better Clean Architecture (unlike our API which is married to TSOA annotations)
+- remove "Library" resource -> just add "POST /players/{playerId}/games"
