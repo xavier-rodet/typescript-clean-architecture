@@ -131,3 +131,4 @@ To trigger this workflow, just request api routes to get games, like:
 - switch from [kubemq-node](https://github.com/kubemq-io/kubemq-node) to [kubemq-js](https://github.com/kubemq-io/kubemq-js) library
 - Add an `@interfaces/adapters/web` which handles is own controllers/views to demonstrate an even better Clean Architecture (unlike our API which is married to TSOA annotations)
 - remove "Library" resource -> just add "POST /players/{playerId}/games" + "DELETE /players/{playerId}/games"
+- set properties as "readonly" to model entities to have static typing immutability in top of runtime immutability: https://www.dalejefferson.com/articles/2019-06-12-object-freeze-typescript-readonly/
