@@ -1,14 +1,16 @@
 {
   "entryFile": "src/app.ts",
   "noImplicitAdditionalProperties": "throw-on-extras",
-  "controllerPathGlobs": ["src/4-frameworks/api/controllers/*Controller.ts"],
+  "controllerPathGlobs": [
+    "src/4-frameworks/interfaces/api/swagger/controllers/*.ts"
+  ],
   "spec": {
     "outputDirectory": "dist",
     "specVersion": 3
   },
   "routes": {
     "routesDir": "dist",
-    "iocModule": "src/4-frameworks/ioc"
+    "iocModule": "src/di/interfaces/api/swagger"
   },
   "compilerOptions": {
     "baseUrl": ".",

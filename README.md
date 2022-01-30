@@ -4,31 +4,13 @@ Game Store is an example of a TypeScript microservice that tries to respect the 
 
 ## Project Structure
 
-### Clean Architecture
-
-- `@entities`: business entities
-  - `/dependencies/`: abstractions of entities dependencies
-  - `/models/`: entities models
-- `@use-cases`: business rules
-  - `/dependencies/`: abstractions of use cases dependencies
-  - `/interactions/`: use cases interactions
-- `@interfaces`: application interfaces (API, web GUI, broker workers/subscribers/receivers, etc...)
-  - `/dependencies/`: abstractions of interfaces dependencies
-  - `/adapters/`: adapters that converts data between `@use-cases`/`@entities` convenience and `@frameworks` convenience
-- `@frameworks`: external dependencies adapters that implements abstractions from `@entities/@use-cases/@interfaces dependencies`
+- `@entities`: enterprise business rules
+- `@use-cases`: application business rules
+- `@interfaces`: interfaces adapters (API, web GUI, cli, brokers & everything communicating from outside)
+- `@frameworks`: all external dependencies (libraries, database, interfaces frameworks etc...)
+- `di`: here we instanciate everything only with [Pure DI](https://blog.ploeh.dk/2014/06/10/pure-di/#:~:text=Pure%20DI%20is%20Dependency%20Injection,the%20term%20Poor%20Man's%20DI.&text=DI%20is%20a%20set%20of,Containers%20are%20optional%20helper%20libraries.)
 
 **Dependency (inversion) workflow:** `@frameworks -> @interfaces -> @use-cases -> @entities`
-
-_Notes:_ Our API Controllers should be dependencies-free and stored into `@interfaces/adapters/api` but as they are married to our Swagger API (especially with TSOA Annotations) we keep them in `@frameworks/api/controllers`.
-
-### Naming conventions
-
-CRUD actions naming convention:
-
-- `@frameworks` (`repositories`): insert/find/update/delete (`DB actions`)
-- `@use-cases` (`interactions`): add/(get/list)/edit/remove (`Business actions`)
-- `@interfaces` (`controllers`): post/get/(put/patch)/delete (`HTTP actions`)
-- `events`: created/read/updated/deleted (`Events actions`)
 
 ## How do I get set up?
 
@@ -108,27 +90,22 @@ db:migrate:make
 
 ## Broker Workflow
 
-To illustrate a complete microservice broker workflow, we also implemented an example workflow like this:
+To illustrate a microservice interaction workflow with a broker, we also implemented this:
 
-- `GamesInteractions` will emit events everytime it is requested to get games
-- `GameListener` is listening to `GamesInteractions` and will publish a broker event `EVENT.GAME.READ`
-- `GameReadSubscriber` is subscribed to broker event `EVENT.GAME.READ` and will add a job to broker queue `QUEUE.GAME.UPDATE_READ_COUNT`
-- `UpdateGameReadCountWorker` is processing broker queue `QUEUE.GAME.UPDATE_READ_COUNT`:
-  - Wait for a response to broker command request `COMMAND.GAME.GET_READ_COUNT`
-  - update the `game.readCount` property through `GamesInteractions`
-- `GetGameReadCountReceiver` is receiving broker command `COMMAND.GAME.GET_READ_COUNT` and send back a random value between 1 and 1000
+- `ViewGameInteractor`, `ViewLibraryInteractor` and `ViewStoreInteractor` which are responsible to return games will emit an app event `display_game` for each game
+- `DisplayGameListener` is listening to `display_game` event and will publish a broker event `event.game_displayed` each times it's triggering
+- `GameDisplayedSubscriber` is subscribing to broker event `event.game_displayed` and will add a job to broker queue `queue.update_game_read_count`
+- `UpdateGameReadCountWorker` si receiving broker queue jobs `queue.update_game_read_count`:
+  - Wait for a response to broker command request `commands.get_game_read_count`
+  - update the `game.readCount` property through `GameRepository`
+- `GetGameReadCountReceiver` is receiving broker command `commands.get_game_read_count` and send back a random value between 1 and 1000
 
-To trigger this workflow, just request api routes to get games, like:
-
-- GET /games
-- GET /games/:uid
-- GET /players/:uid/games
+To trigger this workflow, just request GET api routes returning games (readCount will change everytime)
 
 ## TODOLIST
 
-- Make debugging working correctly (breakpoint should lead us to .ts instead of .js) : https://www.npmjs.com/package/source-map-support ? (or not, it seems OK)
-- Write full [PyramidTest](https://martinfowler.com/bliki/TestPyramid.html)
+- Write full test per layer (entities/use-cases/interfaces), also check [PyramidTest](https://martinfowler.com/bliki/TestPyramid.html)
 - switch from [kubemq-node](https://github.com/kubemq-io/kubemq-node) to [kubemq-js](https://github.com/kubemq-io/kubemq-js) library
-- Add an `@interfaces/adapters/web` which handles is own controllers/views to demonstrate an even better Clean Architecture (unlike our API which is married to TSOA annotations)
-- remove "Library" resource -> just add "POST /players/{playerId}/games" + "DELETE /players/{playerId}/games"
-- set properties as "readonly" to model entities to have static typing immutability in top of runtime immutability: https://www.dalejefferson.com/articles/2019-06-12-object-freeze-typescript-readonly/
+- Add a `@interfaces/web` to implement vue/react web app (we could also do a SSR & SPA app)
+- [REFACTORING] simplify @interfaces/api/presenters -> we could implement a generic "converter" from interactors results into api response (also handling errors to the right http status)
+- [REFACTORING] simplify @frameworks/api/swagger/controllers (same logic as presenters)

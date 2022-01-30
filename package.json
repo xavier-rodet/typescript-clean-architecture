@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "main": "dist/src/app.js",
   "scripts": {
+    "lint": "eslint",
     "dev": "env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) concurrently \"nodemon\" \"nodemon --inspect=0.0.0.0 -x tsoa spec-and-routes\"",
     "test": "nyc mocha -r ts-node/register 'tests/**/*.ts'",
     "build": "tsoa spec-and-routes && ttsc",
     "start": "node dist/src/app.js",
-    "db:migrate:make": "knex --knexfile src/4-frameworks/db/config.ts migrate:make -x ts",
-    "db:migrate:latest": "knex --knexfile src/4-frameworks/db/config.ts migrate:latest",
-    "db:migrate:rollback": "knex --knexfile src/4-frameworks/db/config.ts migrate:rollback",
-    "db:seed": "knex --knexfile src/4-frameworks/db/config.ts seed:run",
+    "knex": "ts-node -C ttypescript node_modules/.bin/knex",
+    "db:migrate:make": "yarn knex --knexfile src/4-frameworks/database/postgresql/config.ts migrate:make -x ts",
+    "db:migrate:latest": "yarn knex --knexfile src/4-frameworks/database/postgresql/config.ts migrate:latest",
+    "db:migrate:rollback": "yarn knex --knexfile src/4-frameworks/database/postgresql/config.ts migrate:rollback",
+    "db:seed": "yarn knex --knexfile src/4-frameworks/database/postgresql/config.ts seed:run",
     "dev:worker:updateGameReadCount": "yarn build && env $(cat .env.dev .env.dev.local | grep -v \"#\" | xargs) node --inspect=0.0.0.0 dist/src/worker-update-game-readcount.js",
     "worker:updateGameReadCount": "node dist/src/worker-update-game-readcount.js"
   },
@@ -41,7 +43,6 @@
   },
   "dependencies": {
     "@logdna/logger": "^2.2.4",
-    "bottlejs": "^2.0.0",
     "correlation-id": "^4.0.0",
     "cors": "^2.8.5",
     "db-errors": "^0.2.3",
@@ -51,7 +52,6 @@
     "lodash": "^4.17.21",
     "pg": "^8.5.1",
     "sanitize-html": "^2.3.2",
-    "status-code-enum": "^1.0.0",
     "swagger-ui-express": "^4.1.6",
     "tsoa": "^3.5.2",
     "uuid": "^8.3.2"

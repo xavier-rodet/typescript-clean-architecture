@@ -1,21 +1,11 @@
-import { init } from "./_init";
+import { init } from './_init';
+import { swaggerApi } from './di/interfaces/api/swagger';
+import { appListener } from './di/interfaces/app-listener';
+import { brokerEventSubscriber } from './di/interfaces/broker/event-subscriber';
+import { brokerCommandReceiver } from './di/interfaces/broker/command-receiver';
+
 init();
-
-import { iocAppContainer } from "@frameworks/ioc";
-import { ICommandReceiver, CommandReceivers } from "@interfaces/adapters/brokers/command-receivers";
-import { IListener, Listeners } from "@interfaces/adapters/listeners";
-import { Api, IApi } from "@interfaces/adapters/api";
-import {
-  IEventSubscriber,
-  EventSubscribers,
-} from "@interfaces/adapters/brokers/event-subscribers";
-
-const brokerEventSubscribers = iocAppContainer[EventSubscribers.name] as IEventSubscriber;
-const brokerCommandReceivers = iocAppContainer[CommandReceivers.name] as ICommandReceiver;
-const appListeners = iocAppContainer[Listeners.name] as IListener;
-const api = iocAppContainer[Api.name] as IApi;
-
-brokerEventSubscribers.subscribe();
-brokerCommandReceivers.receive();
-appListeners.listen();
-api.start();
+brokerEventSubscriber.subscribe();
+brokerCommandReceiver.receive();
+appListener.listen();
+swaggerApi.start();

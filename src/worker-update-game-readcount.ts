@@ -1,19 +1,11 @@
-import { init } from "./_init";
+import { init } from './_init';
+import { updateGameReadCountWorker } from './di/interfaces/broker/workers/update-game-read-count';
+
 init();
-
-import { iocAppContainer } from "@frameworks/ioc";
-import {
-  IQueueWorker,
-  UpdateGameReadCountWorker,
-} from "@interfaces/adapters/brokers/queue-workers";
-
-const updateGameReadCountWorker = iocAppContainer[
-  UpdateGameReadCountWorker.name
-] as IQueueWorker;
 
 try {
   updateGameReadCountWorker.run();
 } catch (error) {
-  console.error("UpdateGameReadCountWorker error", { error });
+  console.error('UpdateGameReadCountWorker error', { error });
   process.exit(1);
 }
