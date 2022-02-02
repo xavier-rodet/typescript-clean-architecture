@@ -18,7 +18,8 @@
       "@entities/*": ["src/1-entities/*"],
       "@use-cases/*": ["src/2-use-cases/*"],
       "@interfaces/*": ["src/3-interfaces/*"],
-      "@frameworks/*": ["src/4-frameworks/*"]
+      "@frameworks/*": ["src/4-frameworks/*"],
+      "@di/*": ["src/di/*"]
     }
   },
   "ignore": ["**/node_modules/@types/**"]

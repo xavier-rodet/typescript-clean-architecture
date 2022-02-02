@@ -9,6 +9,7 @@ import { EventDispatcher } from '@frameworks/libraries/event-dispatcher';
 import { Logger } from '@frameworks/libraries/logger';
 import { Sanitizer } from '@frameworks/libraries/sanitizer';
 import { Uid } from '@frameworks/libraries/uid';
+import { AuthorizationFactory } from '@use-cases/_common/security';
 
 export const uid = new Uid();
 
@@ -29,3 +30,5 @@ export const brokerCommands = new BrokerCommands(
   buildBrokerConfig(uid),
   correlator
 );
+
+export const authorizationFactory = new AuthorizationFactory();
