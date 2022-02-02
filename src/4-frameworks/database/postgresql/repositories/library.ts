@@ -3,20 +3,17 @@ import {
   EntityRelationNotFoundError,
   ILibraryRepository,
 } from '@use-cases/_common/database';
-import {
-  ForeignKeyViolationError,
-  UniqueViolationError,
-  wrapError,
-} from 'db-errors';
 import Knex from 'knex';
 import { TEither } from 'src/_common/typescript';
+import { ARepository } from './_common/repository';
 
-export class LibraryRepository implements ILibraryRepository {
-  private db: Knex;
+export class LibraryRepository
+  extends ARepository
+  implements ILibraryRepository {
   private readonly TABLE = 'library';
 
-  constructor(db: Knex) {
-    this.db = db;
+  constructor(private db: Knex) {
+    super('Library');
   }
 
   public async insert(
@@ -30,28 +27,13 @@ export class LibraryRepository implements ILibraryRepository {
         owner_id: ownerId,
         game_id: gameId,
       });
-
-      return {
-        right: undefined,
-      };
+      return { right: undefined };
     } catch (error) {
-      const wrappedError = wrapError(error as Error);
-      switch (wrappedError.constructor) {
-        case UniqueViolationError:
-          return {
-            left: new EntityDuplicateError('game already owned by player'),
-          };
-
-        case ForeignKeyViolationError:
-          return {
-            left: new EntityRelationNotFoundError(
-              'game or owner does not exist'
-            ),
-          };
-
-        default:
-          throw wrappedError;
-      }
+      return {
+        left: this.convertDbError<
+          EntityDuplicateError | EntityRelationNotFoundError
+        >(error as Error),
+      };
     }
   }
 

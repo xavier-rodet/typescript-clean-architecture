@@ -48,7 +48,9 @@ export const options = {
 export default config;
 
 /*****  Private methods *****/
-function camelCaseFieldsName(row: any): any {
+function camelCaseFieldsName(
+  row: Record<string, unknown>
+): Record<string, unknown> {
   if (row) {
     Object.entries(row).forEach(([key, value]) => {
       delete row[key];

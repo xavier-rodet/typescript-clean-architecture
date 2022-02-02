@@ -108,8 +108,6 @@ class TsoaContainer implements IocContainer {
   }
 
   get<T>(controller: { prototype: T; name: string }): T {
-    console.log('get controller', controller);
-
     return this.iocContainer[controller.name] as T;
   }
 }

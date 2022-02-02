@@ -6,12 +6,13 @@ import {
   TPublishGameResult,
 } from '@use-cases/publisher/publish-game';
 import { IPresenter } from '@use-cases/_common/presenter';
-import { AuthorizationError } from '@use-cases/_common/security';
+
+type TErrorStatus = EHttpStatus.ClientErrorForbidden;
 
 export type TPublishGameResponse = TApiResponse<
   TPublishGameResult,
   EHttpStatus.SuccessCreated,
-  EHttpStatus.ClientErrorForbidden
+  TErrorStatus
 >;
 
 export class PublishGamePresenter
@@ -19,27 +20,20 @@ export class PublishGamePresenter
   implements IPresenter<TPublishGameOutput> {
   public present(either: TPublishGameOutput): void {
     if (either.left) {
-      return this.handleError(either.left);
-    }
-
-    this.response = {
-      right: {
-        status: EHttpStatus.SuccessCreated,
-        content: either.right,
-      },
-    };
-  }
-
-  private handleError(error: Error): void {
-    switch (error.constructor) {
-      case AuthorizationError:
-        this.response = {
-          left: {
-            status: EHttpStatus.ClientErrorForbidden,
-            error: error.message,
-          },
-        };
-        break;
+      const error = either.left;
+      this.response = {
+        left: {
+          status: this.convertAppErrorToStatusCode<TErrorStatus>(error),
+          error: error.message,
+        },
+      };
+    } else {
+      this.response = {
+        right: {
+          status: EHttpStatus.SuccessCreated,
+          content: either.right,
+        },
+      };
     }
   }
 }

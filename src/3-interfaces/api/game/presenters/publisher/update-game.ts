@@ -5,14 +5,16 @@ import {
   TUpdateGameOutput,
   TUpdateGameResult,
 } from '@use-cases/publisher/update-game';
-import { EntityNotFoundError } from '@use-cases/_common/database/error';
 import { IPresenter } from '@use-cases/_common/presenter';
-import { AuthorizationError } from '@use-cases/_common/security';
+
+type TErrorStatus =
+  | EHttpStatus.ClientErrorForbidden
+  | EHttpStatus.ClientErrorNotFound;
 
 export type TUpdateGameResponse = TApiResponse<
   TUpdateGameResult,
   EHttpStatus.SuccessOK,
-  EHttpStatus.ClientErrorForbidden | EHttpStatus.ClientErrorNotFound
+  TErrorStatus
 >;
 
 export class UpdateGamePresenter
@@ -20,36 +22,20 @@ export class UpdateGamePresenter
   implements IPresenter<TUpdateGameOutput> {
   public present(either: TUpdateGameOutput): void {
     if (either.left) {
-      return this.handleError(either.left);
-    }
-
-    this.response = {
-      right: {
-        status: EHttpStatus.SuccessOK,
-        content: either.right,
-      },
-    };
-  }
-
-  private handleError(error: Error): void {
-    switch (error.constructor) {
-      case AuthorizationError:
-        this.response = {
-          left: {
-            status: EHttpStatus.ClientErrorForbidden,
-            error: error.message,
-          },
-        };
-        break;
-
-      case EntityNotFoundError:
-        this.response = {
-          left: {
-            status: EHttpStatus.ClientErrorNotFound,
-            error: error.message,
-          },
-        };
-        break;
+      const error = either.left;
+      this.response = {
+        left: {
+          status: this.convertAppErrorToStatusCode<TErrorStatus>(error),
+          error: error.message,
+        },
+      };
+    } else {
+      this.response = {
+        right: {
+          status: EHttpStatus.SuccessOK,
+          content: either.right,
+        },
+      };
     }
   }
 }

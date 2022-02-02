@@ -10,39 +10,29 @@ import Knex from 'knex';
 import { options } from '../config';
 import { IGameRepository } from '@use-cases/_common/database';
 
-import { wrapError, UniqueViolationError } from 'db-errors';
-
 import { EntityDuplicateError } from '@use-cases/_common/database';
 import { TComplete, TEither } from 'src/_common/typescript';
 import { snakeCase } from 'lodash';
+import { ARepository } from './_common/repository';
 
-export class GameRepository implements IGameRepository {
+export class GameRepository extends ARepository implements IGameRepository {
   private readonly TABLE = 'games';
   private readonly FIELDS = this.createFields();
 
-  constructor(private db: Knex, private gameFactory: IGameFactory) {}
+  constructor(private db: Knex, private gameFactory: IGameFactory) {
+    super(Game.name);
+  }
 
   public async insert(
     game: Game
   ): Promise<TEither<EntityDuplicateError, void>> {
     try {
       await this.db(this.TABLE).insert(game);
-
-      return {
-        right: undefined,
-      };
+      return { right: undefined };
     } catch (error) {
-      const wrappedError = wrapError(error as Error);
-
-      switch (wrappedError.constructor) {
-        case UniqueViolationError:
-          return {
-            left: new EntityDuplicateError('game already exist'),
-          };
-
-        default:
-          throw wrappedError;
-      }
+      return {
+        left: this.convertDbError<EntityDuplicateError>(error as Error),
+      };
     }
   }
 

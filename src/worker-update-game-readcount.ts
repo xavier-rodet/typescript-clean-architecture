@@ -1,7 +1,7 @@
 import { init } from './_init';
-import { updateGameReadCountWorker } from './di/interfaces/broker/workers/update-game-read-count';
-
 init();
+
+import { updateGameReadCountWorker } from './di/interfaces/broker/workers/update-game-read-count';
 
 try {
   updateGameReadCountWorker.run();

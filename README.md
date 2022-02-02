@@ -105,7 +105,5 @@ To trigger this workflow, just request GET api routes returning games (readCount
 ## TODOLIST
 
 - Write full test per layer (entities/use-cases/interfaces), also check [PyramidTest](https://martinfowler.com/bliki/TestPyramid.html)
+- Add a `@interfaces/web` to implement vue/react web app
 - switch from [kubemq-node](https://github.com/kubemq-io/kubemq-node) to [kubemq-js](https://github.com/kubemq-io/kubemq-js) library
-- Add a `@interfaces/web` to implement vue/react web app (we could also do a SSR & SPA app)
-- [REFACTORING] simplify @interfaces/api/presenters -> we could implement a generic "converter" from interactors results into api response (also handling errors to the right http status)
-- [REFACTORING] simplify @frameworks/api/swagger/controllers (same logic as presenters)

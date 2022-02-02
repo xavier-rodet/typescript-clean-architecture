@@ -1,18 +1,11 @@
-import { IGameRepository } from './repositories/game';
-import { ILibraryRepository } from './repositories/library';
-import { IPlayerRepository } from './repositories/player';
-import { IReviewRepository } from './repositories/review';
+export { IGameRepository } from './repositories/game';
+export { ILibraryRepository } from './repositories/library';
+export { IPlayerRepository } from './repositories/player';
+export { IReviewRepository } from './repositories/review';
 
 export {
-  IGameRepository,
-  ILibraryRepository,
-  IPlayerRepository,
-  IReviewRepository,
-};
-
-import {
   DatabaseError,
   EntityDuplicateError,
   EntityRelationNotFoundError,
+  EntityNotFoundError,
 } from './error';
-export { DatabaseError, EntityDuplicateError, EntityRelationNotFoundError };

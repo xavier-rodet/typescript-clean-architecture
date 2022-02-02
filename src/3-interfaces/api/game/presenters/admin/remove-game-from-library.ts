@@ -6,12 +6,13 @@ import {
   TRemoveGameFromLibraryResult,
 } from '@use-cases/admin/remove-game-from-library';
 import { IPresenter } from '@use-cases/_common/presenter';
-import { AuthorizationError } from '@use-cases/_common/security';
+
+type TErrorStatus = EHttpStatus.ClientErrorForbidden;
 
 export type TRemoveGameFromLibraryResponse = TApiResponse<
   TRemoveGameFromLibraryResult,
   EHttpStatus.SuccessNoContent,
-  EHttpStatus.ClientErrorForbidden
+  TErrorStatus
 >;
 
 export class RemoveGameFromLibraryPresenter
@@ -19,28 +20,20 @@ export class RemoveGameFromLibraryPresenter
   implements IPresenter<TRemoveGameFromLibraryOutput> {
   public present(either: TRemoveGameFromLibraryOutput): void {
     if (either.left) {
-      return this.handleError(either.left);
-    }
-
-    this.response = {
-      right: {
-        status: EHttpStatus.SuccessNoContent,
-        content: undefined,
-      },
-    };
-  }
-
-  private handleError(error: Error): void {
-    switch (error.constructor) {
-      case AuthorizationError:
-        this.response = {
-          left: {
-            status: EHttpStatus.ClientErrorForbidden,
-            error: error.message,
-          },
-        };
-
-        break;
+      const error = either.left;
+      this.response = {
+        left: {
+          status: this.convertAppErrorToStatusCode<TErrorStatus>(error),
+          error: error.message,
+        },
+      };
+    } else {
+      this.response = {
+        right: {
+          status: EHttpStatus.SuccessNoContent,
+          content: undefined,
+        },
+      };
     }
   }
 }

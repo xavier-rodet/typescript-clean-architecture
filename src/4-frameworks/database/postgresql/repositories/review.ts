@@ -4,21 +4,19 @@ import {
   EntityDuplicateError,
   EntityRelationNotFoundError,
 } from '@use-cases/_common/database';
-import {
-  ForeignKeyViolationError,
-  UniqueViolationError,
-  wrapError,
-} from 'db-errors';
 import Knex from 'knex';
 import { snakeCase } from 'lodash';
 import { TComplete, TEither } from 'src/_common/typescript';
 import { options } from '../config';
+import { ARepository } from './_common/repository';
 
-export class ReviewRepository implements IReviewRepository {
+export class ReviewRepository extends ARepository implements IReviewRepository {
   private readonly TABLE = 'reviews';
   private readonly FIELDS = this.createFields();
 
-  constructor(private db: Knex, private reviewFactory: IReviewFactory) {}
+  constructor(private db: Knex, private reviewFactory: IReviewFactory) {
+    super(Review.name);
+  }
 
   public async insert(
     review: Review
@@ -27,28 +25,13 @@ export class ReviewRepository implements IReviewRepository {
   > {
     try {
       await this.db(this.TABLE).insert(review);
-
-      return {
-        right: undefined,
-      };
+      return { right: undefined };
     } catch (error) {
-      const wrappedError = wrapError(error as Error);
-      switch (wrappedError.constructor) {
-        case UniqueViolationError:
-          return {
-            left: new EntityDuplicateError('game already reviewed by player'),
-          };
-
-        case ForeignKeyViolationError:
-          return {
-            left: new EntityRelationNotFoundError(
-              'game or reviewer does not exist'
-            ),
-          };
-
-        default:
-          throw wrappedError;
-      }
+      return {
+        left: this.convertDbError<
+          EntityDuplicateError | EntityRelationNotFoundError
+        >(error as Error),
+      };
     }
   }
 

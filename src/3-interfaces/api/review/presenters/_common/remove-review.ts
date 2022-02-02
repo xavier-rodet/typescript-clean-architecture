@@ -6,12 +6,13 @@ import {
   TRemoveReviewResult,
 } from '@use-cases/_common/interactors/remove-review';
 import { IPresenter } from '@use-cases/_common/presenter';
-import { AuthorizationError } from '@use-cases/_common/security';
+
+type TErrorStatus = EHttpStatus.ClientErrorForbidden;
 
 export type TRemoveReviewResponse = TApiResponse<
   TRemoveReviewResult,
   EHttpStatus.SuccessNoContent,
-  EHttpStatus.ClientErrorForbidden
+  TErrorStatus
 >;
 
 // We abstract RemoveReviewPresenter, just do demonstrate how admin/moderator/player can implements their own class
@@ -22,23 +23,18 @@ export abstract class ARemoveReviewPresenter
   implements IPresenter<TRemoveReviewOutput> {
   public present(either: TRemoveReviewOutput): void {
     if (either.left) {
-      return this.handleError(either.left);
-    }
-
-    this.response = {
-      right: {
-        status: EHttpStatus.SuccessNoContent,
-        content: either.right,
-      },
-    };
-  }
-
-  private handleError(error: Error): void {
-    if (error instanceof AuthorizationError) {
+      const error = either.left;
       this.response = {
         left: {
-          status: EHttpStatus.ClientErrorForbidden,
+          status: this.convertAppErrorToStatusCode<TErrorStatus>(error),
           error: error.message,
+        },
+      };
+    } else {
+      this.response = {
+        right: {
+          status: EHttpStatus.SuccessNoContent,
+          content: either.right,
         },
       };
     }

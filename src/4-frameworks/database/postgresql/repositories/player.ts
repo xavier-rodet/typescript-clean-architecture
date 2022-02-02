@@ -3,38 +3,30 @@ import {
   EntityDuplicateError,
   IPlayerRepository,
 } from '@use-cases/_common/database';
-import { UniqueViolationError, wrapError } from 'db-errors';
 import Knex from 'knex';
 import { snakeCase } from 'lodash';
 import { TComplete, TEither } from 'src/_common/typescript';
 import { options } from '../config';
+import { ARepository } from './_common/repository';
 
-export class PlayerRepository implements IPlayerRepository {
+export class PlayerRepository extends ARepository implements IPlayerRepository {
   private readonly TABLE = 'players';
   private readonly FIELDS = this.createFields();
 
-  constructor(private db: Knex, private playerFactory: IPlayerFactory) {}
+  constructor(private db: Knex, private playerFactory: IPlayerFactory) {
+    super(Player.name);
+  }
 
   public async insert(
     player: Player
   ): Promise<TEither<EntityDuplicateError, void>> {
     try {
       await this.db(this.TABLE).insert(player);
-
-      return {
-        right: undefined,
-      };
+      return { right: undefined };
     } catch (error) {
-      const wrappedError = wrapError(error as Error);
-      switch (wrappedError.constructor) {
-        case UniqueViolationError:
-          return {
-            left: new EntityDuplicateError('player already exist'),
-          };
-
-        default:
-          throw wrappedError;
-      }
+      return {
+        left: this.convertDbError<EntityDuplicateError>(error as Error),
+      };
     }
   }
 
