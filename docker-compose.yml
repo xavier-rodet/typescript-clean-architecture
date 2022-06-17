@@ -1,9 +1,9 @@
-version: "3.7"
+version: '3.7'
 
 services:
   game-store:
     image: node:14.17-alpine
-    entrypoint: ["/bin/sh", "-c"]
+    entrypoint: ['/bin/sh', '-c']
     command:
       - |
         yarn install
@@ -39,7 +39,7 @@ services:
 
   adminer:
     image: adminer
-    restart: "no"
+    restart: 'no'
     ports:
       - 54320:8080
     environment:
@@ -61,7 +61,7 @@ services:
 
   update-game-read-count-worker:
     image: node:14.17-alpine
-    entrypoint: ["/bin/sh", "-c"]
+    entrypoint: ['/bin/sh', '-c']
     command:
       - |
         yarn install

@@ -1,5 +1,23 @@
 # README
 
+# TODO:
+
+- setup new hierarchy
+  - what domains do we need ?
+  - should we put frameworks into domains ? ... nah...
+  - where should we put listeners ? & brokers subscribers/workers/cmds?
+- handle rights / authorizations "better" (not from structure POV)
+- rename "entitySource" into "entityDTO"
+- Zero ORM ?
+  - How about complexe relation handling within code ?
+  - Transaction handling ? (like edit an object + other relation and want to save all together)
+    => Solution: nos repo representent nos domaines et leurs interactions et non notre bdd !!!!
+    => On doit donc créer une méthod de repo qui se chargera de l'atomicité de la requête :-) (donc dans la métho implément par un framework on fait la transaction)
+    => retry simplify tsconfig path without @zerollup/ts-transform-paths ? (not sure it's possible)
+    => Find a static code analysis like https://github.com/qossmic/deptrac but for NodeJS/Typescript :-) (to ensure our architecture rules are respected)
+  - even better: find one which auto generate diagram of our architecture
+    => Config tsconfig to remove ';' semicolons
+
 Game Store is an example of a TypeScript microservice that tries to respect the [SOLID principles](https://en.wikipedia.org/wiki/SOLID) and the [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 
 ## Project Structure

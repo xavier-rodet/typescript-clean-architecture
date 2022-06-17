@@ -15,11 +15,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@entities/*": ["src/1-entities/*"],
-      "@use-cases/*": ["src/2-use-cases/*"],
-      "@interfaces/*": ["src/3-interfaces/*"],
-      "@frameworks/*": ["src/4-frameworks/*"],
-      "@di/*": ["src/di/*"]
+      "@app/*": ["./src/core/app/*"],
+      "@domains/*": ["./src/core/domains/*"],
+      "@di/*": ["./src/di/*"],
+      "@ts-extension/*": ["./src/ts-extension/*"]
     }
   },
   "ignore": ["**/node_modules/@types/**"]
