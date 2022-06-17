@@ -1,0 +1,27 @@
+services:
+  postgresql:
+    image: postgres:12-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: game-store
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: pwd
+    volumes:
+      - postgresql-volume:/var/lib/postgresql/data:rw
+
+  kubemq:
+    image: kubemq/kubemq
+    ports:
+      - 8080:8080
+      - 9090:9090
+      - 50000:50000
+    environment:
+      KUBEMQ_HOST: kubemq
+      KUBEMQ_TOKEN: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    volumes:
+      - kubemq-volume:/store
+
+volumes:
+  postgresql-volume:
+  kubemq-volume:

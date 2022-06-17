@@ -1,1 +1,0 @@
-export { APgSqlRepository } from './repository'

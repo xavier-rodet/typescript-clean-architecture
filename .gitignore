@@ -5,8 +5,9 @@
 
 .vscode
 
-# Local dev en variables (mostly for secrets) 
-.env.dev.local
+# Custom env dev
+*.env
+*.env.dev
 
 # Node artifact files
 node_modules/

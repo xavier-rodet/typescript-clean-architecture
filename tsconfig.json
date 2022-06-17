@@ -1,7 +1,8 @@
 {
   "include": ["src", "ts-definitions"],
   "ts-node": {
-    "files": true
+    "files": true,
+    "require": ["tsconfig-paths/register"]
   },
   "compilerOptions": {
     /* Basic Options */
@@ -31,9 +32,8 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "@app/*": ["./src/core/app/*"],
-      "@domains/*": ["./src/core/domains/*"],
-      "@di/*": ["./src/di/*"],
+      "@app/*": ["./src/app/*"],
+      "@domains/*": ["./src/domains/*"],
       "@ts-extension/*": ["./src/ts-extension/*"]
     },
     "esModuleInterop": true,
@@ -44,11 +44,13 @@
     "emitDecoratorMetadata": true,
 
     /* Advanced Options */
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true
 
     /* Plugins */
+    /*
     "plugins": [
       { "transform": "@zerollup/ts-transform-paths", "exclude": ["*"] }
     ]
+    */
   }
 }
