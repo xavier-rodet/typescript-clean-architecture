@@ -1,8 +1,5 @@
 {
-  "references": [{ "path": "domains/Community/Discussion" }],
-  "files": [],
-  "include": ["./domains"],
-  "exclude": ["./node_modules"],
+  "include": ["src", "ts-definitions"],
   "ts-node": {
     "files": true,
     "require": ["tsconfig-paths/register"]
@@ -12,7 +9,7 @@
     "incremental": true,
     "target": "es6",
     "module": "commonjs",
-    "outDir": "./dist",
+    "outDir": "dist",
     "sourceMap": true,
 
     /* Strict Type-Checking Options */
@@ -35,8 +32,9 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "@ts-extension/*": ["ts-extensions/*"],
-      "@shared-kernel/*": ["domains/SharedKernel/src/*"]
+      "@app/*": ["./src/app/*"],
+      "@domains/*": ["./src/domains/*"],
+      "@ts-extension/*": ["./src/ts-extension/*"]
     },
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -46,9 +44,13 @@
     "emitDecoratorMetadata": true,
 
     /* Advanced Options */
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true
 
     /* Plugins */
-    "plugins": []
+    /*
+    "plugins": [
+      { "transform": "@zerollup/ts-transform-paths", "exclude": ["*"] }
+    ]
+    */
   }
 }

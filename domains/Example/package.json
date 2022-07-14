@@ -1,0 +1,23 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "ts-node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xavier-rodet/typescript-clean-architecture.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xavier-rodet/typescript-clean-architecture/issues"
+  },
+  "homepage": "https://github.com/xavier-rodet/typescript-clean-architecture#readme"
+}

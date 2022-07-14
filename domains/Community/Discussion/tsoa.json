@@ -1,0 +1,15 @@
+{
+  "entryFile": "src/app.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": [
+    "src/core/driving-adapters/api/controllers/*-controller.ts"
+  ],
+  "spec": {
+    "outputDirectory": "dist",
+    "specVersion": 3
+  },
+  "routes": {
+    "routesDir": "dist",
+    "iocModule": "src/di/driving-adapters/api/api"
+  }
+}
