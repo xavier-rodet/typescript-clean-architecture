@@ -4,7 +4,7 @@ import { TopicController } from '../../driving-adapters/api/controllers/topic-co
 import { topicController } from '../driving-adapters/api/controllers/topic-controller';
 import { Swagger, SwaggerConfig } from '../../infra/swagger';
 import { resolve } from 'path';
-import { correlator } from '@domains/SharedKernel/di/driven-adapters/correlator';
+import { correlator } from '@shared-kernel/di/driven-adapters/correlator';
 
 // ----------------------------------------------------------------------------------------------------------
 

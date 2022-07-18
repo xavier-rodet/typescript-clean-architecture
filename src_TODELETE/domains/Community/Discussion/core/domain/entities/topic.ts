@@ -1,5 +1,5 @@
-import { ValidationError } from '@domains/SharedKernel/core/domain/errors';
-import { Uid } from '@domains/SharedKernel/core/domain/value-objects';
+import { ValidationError } from '@shared-kernel/core/domain/errors';
+import { Uid } from '@shared-kernel/core/domain/value-objects';
 import { UidUtil } from '@ts-extension/utils';
 
 type TopicProps = {

@@ -6,7 +6,6 @@
   "directories": {
     "test": "tests"
   },
-  "devDependencies": {},
   "scripts": {
     "dev": "ts-node src/app.ts",
     "test": "setup jest cmd",

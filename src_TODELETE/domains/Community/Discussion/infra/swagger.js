@@ -43,7 +43,7 @@ var swagger_ui_express_1 = require("swagger-ui-express");
 var tsoa_1 = require("tsoa");
 var routes_1 = require("../dist/routes");
 var constants_1 = require("@ts-extension/constants");
-var errors_1 = require("@domains/SharedKernel/core/domain/errors");
+var errors_1 = require("@shared-kernel/core/domain/errors");
 var Swagger = /** @class */ (function () {
     function Swagger(correlator, config) {
         this.correlator = correlator;

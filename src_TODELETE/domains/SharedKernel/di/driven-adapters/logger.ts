@@ -1,7 +1,7 @@
 import {
   Logger,
   LoggerConfig,
-} from '@domains/SharedKernel/driven-adapters/logger';
+} from '@shared-kernel/driven-adapters/logger';
 import { correlator } from './correlator';
 
 const config: LoggerConfig = {

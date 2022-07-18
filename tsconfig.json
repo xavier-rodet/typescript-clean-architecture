@@ -9,6 +9,7 @@
   },
   "compilerOptions": {
     /* Basic Options */
+    "rootDir": ".",
     "incremental": true,
     "target": "es6",
     "module": "commonjs",
@@ -35,8 +36,8 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "@ts-extension/*": ["ts-extensions/*"],
-      "@shared-kernel/*": ["domains/SharedKernel/src/*"]
+      "@ts-extension/*": ["./ts-extension/*"],
+      "@shared-kernel/*": ["./domains/SharedKernel/src/*"]
     },
     "esModuleInterop": true,
     "resolveJsonModule": true,

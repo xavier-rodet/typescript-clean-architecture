@@ -5,7 +5,7 @@ var topic_controller_1 = require("../../driving-adapters/api/controllers/topic-c
 var topic_controller_2 = require("../driving-adapters/api/controllers/topic-controller");
 var swagger_1 = require("../../infra/swagger");
 var path_1 = require("path");
-var correlator_1 = require("@domains/SharedKernel/di/driven-adapters/correlator");
+var correlator_1 = require("@shared-kernel/di/driven-adapters/correlator");
 // ----------------------------------------------------------------------------------------------------------
 /******************** Swagger ********************/
 var controllers = {};

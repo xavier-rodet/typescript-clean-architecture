@@ -2,7 +2,7 @@ import { Knex } from 'knex';
 
 import { ErrorUtil } from '@ts-extension/utils';
 
-import { RepositoryError } from '@domains/SharedKernel/core/domain/errors';
+import { RepositoryError } from '@shared-kernel/core/domain/errors';
 import { ITopicRepository } from '@domains/Community/Discussion/core/app/repositories';
 import { Topic } from '@domains/Community/Discussion/core/domain/entities';
 

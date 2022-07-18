@@ -1,5 +1,5 @@
 import { Topic } from '@domains/Community/Discussion/core/domain/entities';
-import { Uid } from '@domains/SharedKernel/core/domain/value-objects';
+import { Uid } from '@shared-kernel/core/domain/value-objects';
 import { RawTopic } from './raw-topic';
 
 export class TopicMapper {

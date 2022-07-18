@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.Topic = void 0;
-var errors_1 = require("@domains/SharedKernel/core/domain/errors");
-var value_objects_1 = require("@domains/SharedKernel/core/domain/value-objects");
+var errors_1 = require("@shared-kernel/core/domain/errors");
+var value_objects_1 = require("@shared-kernel/core/domain/value-objects");
 var utils_1 = require("@ts-extension/utils");
 var Topic = /** @class */ (function () {
     function Topic(props) {

@@ -2,7 +2,7 @@
 exports.__esModule = true;
 exports.TopicMapper = void 0;
 var entities_1 = require("@domains/Community/Discussion/core/domain/entities");
-var value_objects_1 = require("@domains/SharedKernel/core/domain/value-objects");
+var value_objects_1 = require("@shared-kernel/core/domain/value-objects");
 var TopicMapper = /** @class */ (function () {
     function TopicMapper() {
     }

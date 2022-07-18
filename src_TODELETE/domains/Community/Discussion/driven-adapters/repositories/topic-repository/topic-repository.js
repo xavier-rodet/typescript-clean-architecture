@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.TopicRepository = void 0;
 var utils_1 = require("@ts-extension/utils");
-var errors_1 = require("@domains/SharedKernel/core/domain/errors");
+var errors_1 = require("@shared-kernel/core/domain/errors");
 var topic_mapper_1 = require("./topic-mapper");
 var TopicRepository = /** @class */ (function () {
     function TopicRepository(knex) {

@@ -1,15 +1,3 @@
 {
-  "extends": "../../../tsconfig.json",
-  "ts-node": {
-    "files": true,
-    "require": ["tsconfig-paths/register"]
-  },
-  "compilerOptions": {
-    "composite": true,
-    "outDir": "./dist",
-    "baseUrl": ".",
-    "paths": {
-      "@shared/*": ["./../SharedKernel/src/*"]
-    }
-  }
+  "extends": "../../../tsconfig.json"
 }

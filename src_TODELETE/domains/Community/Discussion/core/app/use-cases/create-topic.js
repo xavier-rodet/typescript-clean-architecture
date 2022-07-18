@@ -37,8 +37,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.CreateTopic = void 0;
-var constants_1 = require("@domains/SharedKernel/core/domain/constants");
-var errors_1 = require("@domains/SharedKernel/core/app/errors");
+var constants_1 = require("@shared-kernel/core/domain/constants");
+var errors_1 = require("@shared-kernel/core/app/errors");
 var entities_1 = require("../../domain/entities");
 var CreateTopic = /** @class */ (function () {
     function CreateTopic(authorization, topicRepository) {

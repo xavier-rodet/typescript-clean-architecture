@@ -1,6 +1,6 @@
-import { ERole } from '@domains/SharedKernel/core/domain/constants';
-import { AuthorizationError } from '@domains/SharedKernel/core/app/errors';
-import { IAuthorization } from '@domains/SharedKernel/core/app/services';
+import { ERole } from '@shared-kernel/core/domain/constants';
+import { AuthorizationError } from '@shared-kernel/core/app/errors';
+import { IAuthorization } from '@shared-kernel/core/app/services';
 
 import { Topic } from '../../domain/entities';
 import { ITopicRepository } from '../repositories';
