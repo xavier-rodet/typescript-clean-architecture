@@ -1,4 +1,4 @@
-import { Topic } from '@domains/Community/Discussion/core/domain/entities';
+import { Topic } from '@core/domain/entities';
 
 export type TopicPresenterInput = {
   topic: Topic;

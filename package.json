@@ -5,6 +5,7 @@
     "lint": "eslint"
   },
   "devDependencies": {
+    "@types/correlation-id": "^2.1.2",
     "@types/cors": "^2.8.12",
     "@types/lodash": "^4.14.182",
     "@types/mocha": "^9.1.1",
@@ -43,7 +44,6 @@
     "uuid": "^8.3.2"
   },
   "workspaces": [
-    "domains/Community/Discussion",
-    "domains/Example"
+    "domains/Community/Discussion"
   ]
 }

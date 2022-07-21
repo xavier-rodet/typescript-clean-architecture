@@ -1,6 +1,6 @@
 import { EHttpStatus } from '@ts-extension/constants';
 
-import { CreateTopic } from '@domains/Community/Discussion/core/app/use-cases/create-topic';
+import { CreateTopic } from '@core/app/use-cases/create-topic';
 
 import { Body, Controller, Post, Route, SuccessResponse, Tags } from 'tsoa';
 import {

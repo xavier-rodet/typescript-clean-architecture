@@ -15,7 +15,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@shared-kernel/*": ["./../../SharedKernel/src/*"]
+      "@ts-extension/*": ["./../../../ts-extension/*"],
+      "@shared-kernel/*": ["./../../SharedKernel/src/*"],
+      "@core/*": ["./src/core/*"],
+      "@di/*": ["./src/di/*"]
     }
   },
   "ignore": ["**/node_modules/@types/**"]

@@ -34,11 +34,6 @@
 
     /* Module Resolution Options */
     "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "@ts-extension/*": ["./ts-extension/*"],
-      "@shared-kernel/*": ["./domains/SharedKernel/src/*"]
-    },
     "esModuleInterop": true,
     "resolveJsonModule": true,
 

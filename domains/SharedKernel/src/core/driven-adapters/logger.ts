@@ -1,5 +1,5 @@
 import LogDNA, { LogLevel, LogOptions } from '@logdna/logger';
-import { ICorrelator, ILogger } from '../core/app/services';
+import { ICorrelator, ILogger } from '../app/services';
 
 export type LoggerConfig = {
   key: string;

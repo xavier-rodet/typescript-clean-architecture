@@ -3,8 +3,8 @@ import { Knex } from 'knex';
 import { ErrorUtil } from '@ts-extension/utils';
 
 import { RepositoryError } from '@shared-kernel/core/domain/errors';
-import { ITopicRepository } from '@domains/Community/Discussion/core/app/repositories';
-import { Topic } from '@domains/Community/Discussion/core/domain/entities';
+import { ITopicRepository } from '@core/app/repositories';
+import { Topic } from '@core/domain/entities';
 
 import { TopicMapper } from './topic-mapper';
 

@@ -7,14 +7,14 @@ import express, {
 import cors from 'cors';
 import swaggerUi, { JsonObject } from 'swagger-ui-express';
 import { ValidateError } from 'tsoa';
-import { RegisterRoutes } from '../dist/routes';
+import { RegisterRoutes } from './../../../../dist/routes';
 import { EHttpStatus } from '@ts-extension/constants';
 import { ICorrelator } from '@shared-kernel/core/app/services';
 import {
   RepositoryError,
   ValidationError,
 } from '@shared-kernel/core/domain/errors';
-import { ApiConfig } from '../../config/api';
+import { ApiConfig } from './config';
 
 export class Api {
   private express: Express;

@@ -1,6 +1,6 @@
-import { IAuthorization } from '../core/app/services';
-import { ERole } from '../core/domain/constants';
-import { User } from '../core/domain/entities';
+import { IAuthorization } from '../app/services';
+import { ERole } from '../domain/constants';
+import { User } from '../domain/entities';
 
 export class Authorization implements IAuthorization {
   public getAuthUser(): User {

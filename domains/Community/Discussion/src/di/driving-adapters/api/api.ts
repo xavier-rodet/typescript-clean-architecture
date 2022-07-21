@@ -1,13 +1,12 @@
-import { resolve } from 'path';
 import { IocContainer } from 'tsoa';
-// import { correlator } from '../../../../../../SharedKernel/src/di/driven-adapters/correlator';
-// import { correlator } from '@shared-kernel/src/di/driven-adapters/correlator';
-import { correlator } from '@shared/di/drivent-adapters/correlator';
 
-import { ApiConfig } from '../../../config/api';
-import { Api } from '../../../core/driving-adapters/api/api';
+import { correlator } from '@shared-kernel/di/driven-adapters/correlator';
+
+import { Api } from '@core/driving-adapters/api/api';
+
 import { TopicController } from '../../../core/driving-adapters/api/controllers/topic-controller';
 import { topicController } from './controllers/topic-controller';
+import { apiConfig } from '../../../config/api';
 
 // ----------------------------------------------------------------------------------------------------------
 
@@ -30,12 +29,5 @@ class TsoaContainer implements IocContainer {
 }
 export const iocContainer = new TsoaContainer(controllers);
 
-const swaggerConfig: ApiConfig = {
-  port: process.env.HTTP_PORT ? parseInt(process.env.HTTP_PORT) : 8080,
-  env: process.env.ENV || '',
-  definitionsPath: resolve(__dirname, '../../dist/swagger.json'),
-  corsAllowOrigin: process.env.CORS_ALLOW_ORIGIN || '',
-};
-
-export const api = new Api(correlator, swaggerConfig);
+export const api = new Api(correlator, apiConfig);
 /******************** Swagger  ********************/
