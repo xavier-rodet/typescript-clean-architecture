@@ -1,0 +1,21 @@
+# services:
+#   discussion:
+#     image: node:16.15-alpine
+#     entrypoint:
+#       [
+#         'npx',
+#         'ts-node',
+#         'src/domains/Community/Discussion/infra/bootstrap/api.ts',
+#       ]
+#     working_dir: /app
+#     env_file:
+#       - src/core/App/infrastructure/.env.dev
+#       - .env.dev
+#     ports:
+#       - 3000:3000
+#     volumes:
+#       - .:/app
+#       - /app/node_modules
+#     depends_on:
+#       - postgresql
+#       - kubemq
