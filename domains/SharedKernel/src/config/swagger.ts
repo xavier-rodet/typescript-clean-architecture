@@ -10,7 +10,7 @@
 // import { ValidateError } from 'tsoa';
 // import { RegisterRoutes } from 'dist/routes';
 // import { ICorrelator } from '../core/app/services';
-// import { EHttpStatus } from '@ts-extension/constants';
+// import { EHttpStatus } from '@/ts-extension/constants';
 // import { RepositoryError, ValidationError } from '../core/domain/errors';
 
 // export type SwaggerConfig = {

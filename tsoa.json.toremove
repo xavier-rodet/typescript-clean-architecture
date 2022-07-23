@@ -17,7 +17,7 @@
     "paths": {
       "@app/*": ["./src/app/*"],
       "@domains/*": ["./src/domains/*"],
-      "@ts-extension/*": ["./src/ts-extension/*"]
+      "@/ts-extension/*": ["./src/ts-extension/*"]
     }
   },
   "ignore": ["**/node_modules/@types/**"]

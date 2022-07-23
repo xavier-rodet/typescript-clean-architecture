@@ -10,7 +10,7 @@
     "dev": "ts-node src/app.ts",
     "test": "setup jest cmd",
     "build": "tsoa spec-and-routes && tsc",
-    "start": "node dist/src/app.js",
+    "start": "node ./../../../dist/domains/Community/Discussion/src/app.js",
     "knex": "ts-node -C ttypescript node_modules/.bin/knex",
     "db:migrate:make": "yarn knex --knexfile src/4-frameworks/database/postgresql/config.ts migrate:make -x ts",
     "db:migrate:latest": "yarn knex --knexfile src/4-frameworks/database/postgresql/config.ts migrate:latest",

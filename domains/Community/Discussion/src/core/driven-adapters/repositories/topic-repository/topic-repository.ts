@@ -1,10 +1,10 @@
 import { Knex } from 'knex';
 
-import { ErrorUtil } from '@ts-extension/utils';
+import { ErrorUtil } from '@/ts-extension/utils';
 
-import { RepositoryError } from '@shared-kernel/core/domain/errors';
-import { ITopicRepository } from '@core/app/repositories';
-import { Topic } from '@core/domain/entities';
+import { RepositoryError } from '@/shared-kernel/core/domain/errors';
+import { ITopicRepository } from '@/core/app/repositories';
+import { Topic } from '@/core/domain/entities';
 
 import { TopicMapper } from './topic-mapper';
 

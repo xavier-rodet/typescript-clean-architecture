@@ -1,8 +1,8 @@
 import { IocContainer } from 'tsoa';
 
-import { correlator } from '@shared-kernel/di/driven-adapters/correlator';
+import { correlator } from '@/shared-kernel/di/driven-adapters/correlator';
 
-import { Api } from '@core/driving-adapters/api/api';
+import { Api } from '@/core/driving-adapters/api/api';
 
 import { TopicController } from '../../../core/driving-adapters/api/controllers/topic-controller';
 import { topicController } from './controllers/topic-controller';

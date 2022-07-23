@@ -1,7 +1,7 @@
 {
   "references": [{ "path": "domains/Community/Discussion" }],
   "files": [],
-  "include": ["./domains"],
+  "include": ["./domains", "./ts-extension"],
   "exclude": ["./node_modules"],
   "ts-node": {
     "files": true,

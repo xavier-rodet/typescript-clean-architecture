@@ -15,10 +15,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@ts-extension/*": ["./../../../ts-extension/*"],
-      "@shared-kernel/*": ["./../../SharedKernel/src/*"],
-      "@core/*": ["./src/core/*"],
-      "@di/*": ["./src/di/*"]
+      "@/ts-extension/*": ["./../../../ts-extension/*"],
+      "@/shared-kernel/*": ["./../../SharedKernel/src/*"],
+      "@/core/*": ["./src/core/*"],
+      "@/di/*": ["./src/di/*"]
     }
   },
   "ignore": ["**/node_modules/@types/**"]

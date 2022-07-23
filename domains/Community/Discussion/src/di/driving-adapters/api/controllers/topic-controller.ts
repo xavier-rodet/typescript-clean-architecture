@@ -1,4 +1,4 @@
-import { TopicController } from '@core/driving-adapters/api/controllers/topic-controller';
+import { TopicController } from '@/core/driving-adapters/api/controllers/topic-controller';
 import { createTopic } from '../../../app/use-cases/create-topic';
 import { topicPresenter } from '../presenters/topic-presenter';
 

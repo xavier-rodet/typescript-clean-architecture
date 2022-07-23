@@ -1,5 +1,5 @@
 import { Topic } from '../../../domain/entities';
-import { Uid } from '@shared-kernel/core/domain/value-objects';
+import { Uid } from '@/shared-kernel/core/domain/value-objects';
 import { RawTopic } from './raw-topic';
 
 export class TopicMapper {

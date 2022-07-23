@@ -1,4 +1,4 @@
-import { UidUtil } from '@ts-extension/utils';
+import { UidUtil } from '@/ts-extension/utils';
 import { ERole } from '../constants';
 import { Uid } from '../value-objects';
 
