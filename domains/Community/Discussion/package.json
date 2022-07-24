@@ -7,10 +7,11 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "no-demon src/app.ts",
+    "dev": "concurrently \"nodemon\" \"nodemon -x npm run tsoa:gen\"",
     "test": "setup jest cmd",
-    "build": "tsoa spec-and-routes && tsc",
+    "build": "npm run tsoa:gen && tsc",
     "start": "node ./../../../dist/domains/Community/Discussion/src/app.js",
+    "tsoa:gen": "ts-node src/core/driving-adapters/api/generate-spec-and-routes.ts",
     "knex": "ts-node -C ttypescript node_modules/.bin/knex",
     "db:migrate:make": "yarn knex --knexfile src/4-frameworks/database/postgresql/config.ts migrate:make -x ts",
     "db:migrate:latest": "yarn knex --knexfile src/4-frameworks/database/postgresql/config.ts migrate:latest",

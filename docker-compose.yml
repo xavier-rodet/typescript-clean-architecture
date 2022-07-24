@@ -1,21 +1,43 @@
-# services:
-#   discussion:
-#     image: node:16.15-alpine
-#     entrypoint:
-#       [
-#         'npx',
-#         'ts-node',
-#         'src/domains/Community/Discussion/infra/bootstrap/api.ts',
-#       ]
-#     working_dir: /app
-#     env_file:
-#       - src/core/App/infrastructure/.env.dev
-#       - .env.dev
-#     ports:
-#       - 3000:3000
-#     volumes:
-#       - .:/app
-#       - /app/node_modules
-#     depends_on:
-#       - postgresql
-#       - kubemq
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./docker/dev/Dockerfile
+    working_dir: /app
+    env_file:
+      - .env
+    ports:
+      - 8081:8081
+    volumes:
+      - ./domains:/app/domains:ro
+      - ./ts-extension:/app/ts-extension:ro
+    depends_on:
+      - postgresql
+      - kubemq
+
+  postgresql:
+    image: postgres:12-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: game-store
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: pwd
+    volumes:
+      - game-store-db:/var/lib/postgresql/data:rw
+
+  kubemq:
+    image: kubemq/kubemq
+    ports:
+      - 8080:8080
+      - 9090:9090
+      - 50000:50000
+    environment:
+      KUBEMQ_HOST: kubemq
+      KUBEMQ_TOKEN: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    volumes:
+      - broker-persistence:/store
+
+volumes:
+  game-store-db:
+  broker-persistence:

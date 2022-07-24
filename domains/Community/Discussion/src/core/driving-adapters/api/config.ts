@@ -12,5 +12,8 @@ export const apiConfig: ApiConfig = {
   env: ENV_VARS.ENV,
   port: ENV_VARS.API.PORT,
   corsAllowOrigin: ENV_VARS.API.CORS_ALLOW_ORIGIN,
-  definitionsPath: resolve(__dirname, '/../../dist/swagger.json'),
+  definitionsPath: resolve(
+    __dirname,
+    './../../../../../../../build/domains/Community/Discussion/swagger.json'
+  ),
 };

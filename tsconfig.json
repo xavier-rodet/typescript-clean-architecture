@@ -1,12 +1,12 @@
 {
   "references": [{ "path": "domains/Community/Discussion" }],
   "files": [],
-  "include": ["./domains", "./ts-extension"],
-  "exclude": ["./node_modules"],
+  "include": ["./build", "./domains", "./ts-extension"],
+  "exclude": ["./node_modules", "./dist"],
   "ts-node": {
     "files": true,
     "require": ["tsconfig-paths/register"],
-    "transpileOnly": true
+    "transpileOnly": true /* for live-reload perfs */
   },
   "compilerOptions": {
     /* Basic Options */

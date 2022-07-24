@@ -1,0 +1,14 @@
+{
+  "extends": "./../../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/ts-extension/*": ["./../../../ts-extension/*"],
+      "@/shared-kernel/*": ["./../../SharedKernel/src/*"],
+      "@/core/*": ["./src/core/*"],
+      "@/di/*": ["./src/di/*"],
+      "@/tsoa": ["./../../../node_modules/tsoa/dist/"]
+    }
+  }
+}

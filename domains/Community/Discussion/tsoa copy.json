@@ -5,11 +5,11 @@
     "src/core/driving-adapters/api/controllers/*-controller.ts"
   ],
   "spec": {
-    "outputDirectory": "./../../../build/domains/Community/Discussion",
+    "outputDirectory": "dist",
     "specVersion": 3
   },
   "routes": {
-    "routesDir": "./../../../build/domains/Community/Discussion",
+    "routesDir": "dist",
     "iocModule": "src/di/driving-adapters/api/api"
   },
   "compilerOptions": {
