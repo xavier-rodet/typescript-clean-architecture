@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "ts-node src/app.ts",
+    "dev": "no-demon src/app.ts",
     "test": "setup jest cmd",
     "build": "tsoa spec-and-routes && tsc",
     "start": "node ./../../../dist/domains/Community/Discussion/src/app.js",

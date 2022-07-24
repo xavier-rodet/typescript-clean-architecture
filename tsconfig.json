@@ -5,7 +5,8 @@
   "exclude": ["./node_modules"],
   "ts-node": {
     "files": true,
-    "require": ["tsconfig-paths/register"]
+    "require": ["tsconfig-paths/register"],
+    "transpileOnly": true
   },
   "compilerOptions": {
     /* Basic Options */

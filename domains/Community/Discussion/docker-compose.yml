@@ -1,9 +1,5 @@
 services:
   discussion:
-    # image: node:16.15-alpine
-    # entrypoint: ['npm', 'run', 'dev']
-    # entrypoint: ['/bin/sh', '-c']
-    # command: ['node', 'run', 'dev']
     build:
       context: ./../../../
       dockerfile: ./domains/Community/Discussion/docker/dev/Dockerfile
@@ -13,53 +9,12 @@ services:
       - .env
     ports:
       - 8081:8081
-    # volumes:
-    #   - ./src:/app/domains/Community/Discussion/src
+    volumes:
+      - ./../../SharedKernel/src:/app/domains/SharedKernel/src:ro
+      - ./src:/app/domains/Community/Discussion/src:ro
     depends_on:
       - postgresql
       - kubemq
-
-  # discussion:
-  #   image: node:16.15-alpine
-  #   entrypoint: ['npx', 'ts-node', './../di/app.ts']
-  #   #    entrypoint: ['/bin/sh', '-c']
-  #   #    command:
-  #   #      - |
-  #   #        npm install
-  #   #        npm build
-  #   #        npm db:migrate:latest
-  #   #        npm start
-  #   working_dir: /app
-  #   env_file:
-  #     - src/core/App/infrastructure/.env.dev
-  #     - .env.dev
-  #   ports:
-  #     - 3000:3000
-  #   volumes:
-  #     - .:/app
-  #     - /app/node_modules
-  #   depends_on:
-  #     - postgresql
-  #     - kubemq
-
-  # discussion-worker:
-  #   image: node:16.15-alpine
-  #   entrypoint: ['npx', 'ts-node', './../di/worker.ts']
-  #   #    entrypoint: ['/bin/sh', '-c']
-  #   #    command:
-  #   #      - |
-  #   #        npm install
-  #   #        npm build
-  #   #        npm worker
-  #   working_dir: /app
-  #   env_file:
-  #     - src/core/App/infrastructure/.env.dev
-  #     - .env.dev
-  #   volumes:
-  #     - .:/app
-  #     - /app/node_modules
-  #   depends_on:
-  #     - discussion
 
   postgresql:
     image: postgres:12-alpine
