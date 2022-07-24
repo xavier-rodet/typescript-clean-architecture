@@ -60,7 +60,7 @@ async function main(): Promise<'done'> {
     compilerOptions: {
       baseUrl: '.',
       paths: {
-        '@/root/*': ['./'],
+        '@/root/*': ['./*'],
         '@/ts-extension/*': ['./ts-extension/*'],
         '@/shared-kernel/*': ['./domains/SharedKernel/src/*'],
         '@/domain/*': ['./domains/Community/Discussion/src/*'],

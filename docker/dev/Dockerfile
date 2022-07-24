@@ -16,6 +16,7 @@ RUN mkdir dist
 RUN chown node:node dist
 
 RUN npm ci
-# RUN npm run build -ws
+RUN npm run build -ws
+RUN chown node:node -R build
 
-# CMD npm run dev -ws
+CMD npm run dev -ws
