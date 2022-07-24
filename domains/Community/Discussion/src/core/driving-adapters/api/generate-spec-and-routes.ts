@@ -60,11 +60,19 @@ async function main(): Promise<'done'> {
     compilerOptions: {
       baseUrl: '.',
       paths: {
-        '@/ts-extension/*': ['./../../../ts-extension/*'],
-        '@/shared-kernel/*': ['./../../SharedKernel/src/*'],
-        '@/core/*': ['./src/core/*'],
-        '@/di/*': ['./src/di/*'],
+        '@/root/*': ['./'],
+        '@/ts-extension/*': ['./ts-extension/*'],
+        '@/shared-kernel/*': ['./domains/SharedKernel/src/*'],
+        '@/domain/*': ['./domains/Community/Discussion/src/*'],
+        '@/core/*': ['./domains/Community/Discussion/src/core/*'],
+        '@/di/*': ['./domains/Community/Discussion/src/di/*'],
       },
+      //   paths: {
+      //     '@/ts-extension/*': ['./../../../ts-extension/*'],
+      //     '@/shared-kernel/*': ['./../../SharedKernel/src/*'],
+      //     '@/core/*': ['./src/core/*'],
+      //     '@/di/*': ['./src/di/*'],
+      //   },
     },
     ignore: ['**/node_modules/@types/**'],
   };
