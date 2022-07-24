@@ -1,15 +1,16 @@
+import { ENV_VARS } from '@/core/env-vars';
+import { ENV } from '@/shared-kernel/core/env';
 import { Knex } from 'knex';
 
 export const dbConfig: Knex.Config = {
   client: 'postgresql',
   connection: {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : undefined,
-    database: process.env.DB_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PWD,
-    ssl:
-      'production' === process.env.ENV ? { rejectUnauthorized: false } : false,
+    host: ENV_VARS.DB.HOST,
+    port: ENV_VARS.DB.PORT,
+    database: 'discussion',
+    user: ENV_VARS.DB.USER,
+    password: ENV_VARS.DB.PWD,
+    ssl: ENV.PROD === ENV_VARS.ENV ? { rejectUnauthorized: false } : false,
   },
   pool: {
     min: 2,

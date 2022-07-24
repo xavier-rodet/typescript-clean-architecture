@@ -9,10 +9,10 @@ services:
       dockerfile: ./domains/Community/Discussion/docker/dev/Dockerfile
     working_dir: /app
     env_file:
-      # - src/core/App/infrastructure/.env.dev
+      - ./../../../.env
       - .env
     ports:
-      - 8080:8080
+      - 8081:8081
     # volumes:
     #   - ./src:/app/domains/Community/Discussion/src
     depends_on:

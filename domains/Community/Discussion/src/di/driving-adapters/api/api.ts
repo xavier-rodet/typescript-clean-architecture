@@ -5,8 +5,9 @@ import { correlator } from '@/shared-kernel/di/driven-adapters/correlator';
 import { Api } from '@/core/driving-adapters/api/api';
 
 import { TopicController } from '../../../core/driving-adapters/api/controllers/topic-controller';
+import { apiConfig } from '@/core/driving-adapters/api/config';
+
 import { topicController } from './controllers/topic-controller';
-import { apiConfig } from '../../../config/api';
 
 // ----------------------------------------------------------------------------------------------------------
 

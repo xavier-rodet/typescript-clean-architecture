@@ -1,5 +1,5 @@
 import Knex from 'knex';
 
-import dbConfig from '../../config/db';
+import dbConfig from '@/core/driven-adapters/repositories/config';
 
 export const knex = Knex(dbConfig);

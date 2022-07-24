@@ -15,6 +15,10 @@ import {
   ValidationError,
 } from '@/shared-kernel/core/domain/errors';
 import { ApiConfig } from './config';
+import { ENV_VARS } from '@/core/env-vars';
+import { ENV } from '@/shared-kernel/core/env';
+
+process.env.NODE_ENV = ENV_VARS.ENV;
 
 export class Api {
   private express: Express;
@@ -26,7 +30,7 @@ export class Api {
     this.express = express();
     this.useBodyParser();
     this.useCorrelation();
-    this.useCors(this.config.corsAllowOrigin);
+    this.useCors(ENV_VARS.API.CORS_ALLOW_ORIGIN);
     this.registerApiRoutes();
     this.registerApiDocs(this.config.definitionsPath);
     this.catchErrors();
@@ -71,7 +75,7 @@ export class Api {
   }
 
   private registerApiDocs(definitionsPath: string): void {
-    if ('development' === this.config.env) {
+    if (ENV.DEV === this.config.env) {
       // Reload OAS for each query
       this.express.use(
         '/docs',

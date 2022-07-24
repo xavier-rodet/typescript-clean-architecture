@@ -7,7 +7,6 @@
 
 # Custom env dev
 *.env
-*.env.dev
 
 # Node artifact files
 node_modules/
