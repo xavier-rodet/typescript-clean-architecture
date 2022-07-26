@@ -20,7 +20,7 @@
  *
  * @public
  */
-export enum EHttpStatus {
+export enum HTTP_STATUS {
   /**
    * The server cannot or will not process the request due to an apparent
    * client error (e.g., malformed request syntax, size too large, invalid

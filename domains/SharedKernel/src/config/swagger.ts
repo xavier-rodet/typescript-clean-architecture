@@ -10,7 +10,7 @@
 // import { ValidateError } from 'tsoa';
 // import { RegisterRoutes } from 'dist/routes';
 // import { ICorrelator } from '../core/app/services';
-// import { EHttpStatus } from '@/ts-extension/constants';
+// import { HTTP_STATUS } from '@/ts-extension/constants';
 // import { RepositoryError, ValidationError } from '../core/domain/errors';
 
 // export type SwaggerConfig = {
@@ -110,7 +110,7 @@
 //     ): ExResponse | void {
 //       if (error instanceof ValidateError) {
 //         console.warn(`Caught EntityError for ${req.path}:`, error.fields);
-//         return res.status(EHttpStatus.ClientErrorUnprocessableEntity).json({
+//         return res.status(HTTP_STATUS.ClientErrorUnprocessableEntity).json({
 //           message: 'Validation Failed',
 //           details: error?.fields,
 //         });
@@ -118,18 +118,18 @@
 //         console.warn(`Caught EntityError for ${req.path}:`, {
 //           message: error.message,
 //         });
-//         return res.status(EHttpStatus.ClientErrorUnprocessableEntity).json({
+//         return res.status(HTTP_STATUS.ClientErrorUnprocessableEntity).json({
 //           message: 'Validation Failed',
 //           details: { message: error.message },
 //         });
 //       } else if (error instanceof RepositoryError) {
 //         console.error('repository error', { error });
-//         return res.status(EHttpStatus.ServerErrorInternal).json({
+//         return res.status(HTTP_STATUS.ServerErrorInternal).json({
 //           message: 'Internal Server Error',
 //         });
 //       } else if (error instanceof Error) {
 //         console.error('internal error', { error });
-//         return res.status(EHttpStatus.ServerErrorInternal).json({
+//         return res.status(HTTP_STATUS.ServerErrorInternal).json({
 //           message: 'Internal Server Error',
 //         });
 //       }
@@ -140,7 +140,7 @@
 
 //   private catchAll(): void {
 //     this.express.use(function notFoundHandler(_req, res: ExResponse) {
-//       res.status(EHttpStatus.ClientErrorNotFound).send({
+//       res.status(HTTP_STATUS.ClientErrorNotFound).send({
 //         message: 'URL Not Found',
 //       });
 //     });

@@ -45,13 +45,13 @@ async function main(): Promise<'done'> {
     spec: {
       //   host: 'localhost:3000',
       //   basePath: '/api/v1',
-      //   outputDirectory: './../../../build/domains/Community/Discussion',
+      //   outputDirectory: './../../../build/domains/Community/DiscussionBis',
       outputDirectory: buildPath,
       specVersion: 3,
     },
 
     routes: {
-      //   routesDir: './../../../build/domains/Community/Discussion',
+      //   routesDir: './../../../build/domains/Community/DiscussionBis',
       routesDir: buildPath,
       iocModule: 'src/di/driving-adapters/api/api',
     },
@@ -63,9 +63,9 @@ async function main(): Promise<'done'> {
         '@/build/*': ['./build/*'],
         '@/ts-extension/*': ['./ts-extension/*'],
         '@/shared-kernel/*': ['./domains/SharedKernel/src/*'],
-        '@/domain/*': ['./domains/Community/Discussion/src/*'],
-        '@/core/*': ['./domains/Community/Discussion/src/core/*'],
-        '@/di/*': ['./domains/Community/Discussion/src/di/*'],
+        '@/domain/*': ['./domains/Community/DiscussionBis/src/*'],
+        '@/core/*': ['./domains/Community/DiscussionBis/src/core/*'],
+        '@/di/*': ['./domains/Community/DiscussionBis/src/di/*'],
       },
       //   paths: {
       //     '@/ts-extension/*': ['./../../../ts-extension/*'],

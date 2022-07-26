@@ -13,9 +13,9 @@
       "@/build/*": ["./build/*"],
       "@/ts-extension/*": ["./ts-extension/*"],
       "@/shared-kernel/*": ["./domains/SharedKernel/src/*"],
-      "@/domain/*": ["./domains/Community/Discussion/src/*"],
-      "@/core/*": ["./domains/Community/Discussion/src/core/*"],
-      "@/di/*": ["./domains/Community/Discussion/src/di/*"]
+      "@/domain/*": ["./domains/Community/DiscussionBis/src/*"],
+      "@/core/*": ["./domains/Community/DiscussionBis/src/core/*"],
+      "@/di/*": ["./domains/Community/DiscussionBis/src/di/*"]
     }
   }
 }

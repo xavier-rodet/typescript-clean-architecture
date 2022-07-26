@@ -7,7 +7,7 @@ import express, {
 import cors from 'cors';
 import swaggerUi, { JsonObject } from 'swagger-ui-express';
 import { ValidateError } from 'tsoa';
-import { RegisterRoutes } from '@/root/build/domains/Community/Discussion/routes';
+import { RegisterRoutes } from '@/root/build/domains/Community/DiscussionBis/routes';
 import { HTTP_STATUS } from '@/ts-extension/constants';
 import { ICorrelator } from '@/shared-kernel/core/app/services';
 import {
