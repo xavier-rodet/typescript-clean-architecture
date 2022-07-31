@@ -6,7 +6,7 @@ import { Body, Controller, Post, Route, SuccessResponse, Tags } from 'tsoa';
 import {
   TopicPresenter,
   TopicPresenterOutput,
-} from '../presenters/topic-presenter';
+} from './../presenters/topic-presenter';
 
 export type PostTopicControllerInput = {
   gameId?: string;

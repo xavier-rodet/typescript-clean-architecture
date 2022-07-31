@@ -9,8 +9,10 @@
   "scripts": {
     "dev": "ts-node ./src/core/driving-adapters/api/generate-spec-and-routes.ts && concurrently \"nodemon\" \"nodemon -x ts-node ./src/core/driving-adapters/api/generate-spec-and-routes.ts\"",
     "test": "setup jest cmd",
-    "build": "ts-node ./src/core/driving-adapters/api/generate-spec-and-routes.ts && tsc && tsc-alias && node ../../../dist/domains/Community/Discussion/src/core/driving-adapters/api/generate-spec-and-routes.js",
-    "start": "node ./../../../dist/domains/Community/Discussion/src/app.js",
+    "build": "ts-node ./src/core/driving-adapters/api/generate-spec-and-routes.ts && tsc && tsc-alias && node ./../../../dist/domains/Community/Discussion/src/core/driving-adapters/api/generate-spec-and-routes.js",
+    "build-old": "ts-node ./src/core/driving-adapters/api/generate-spec-and-routes.ts && tsc && tsc-alias && node ./../../../dist/domains/Community/Discussion/src/core/driving-adapters/api/generate-spec-and-routes.js",
+    "start": "pm2 start ./../../../dist/domains/Community/Discussion/src/app.js --name discussion",
+    "stop": "pm2 stop discussion",
     "tsoa:gen": "ts-node ./src/core/driving-adapters/api/generate-spec-and-routes.ts",
     "knex": "ts-node -C ttypescript node_modules/.bin/knex",
     "db:migrate:make": "yarn knex --knexfile src/4-frameworks/database/postgresql/config.ts migrate:make -x ts",

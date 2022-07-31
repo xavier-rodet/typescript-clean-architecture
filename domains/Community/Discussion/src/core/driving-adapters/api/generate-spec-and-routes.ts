@@ -24,7 +24,7 @@ async function main(): Promise<'done'> {
 
   const buildPath = path.resolve(
     ROOT_DIR,
-    'build/domains/Community/DiscussionBis'
+    'build/domains/Community/Discussion'
   );
   createDirRegardless(buildPath);
 
